@@ -2,6 +2,7 @@ import express, { NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
 import { router as cityRoutes } from "./routes/cities";
 import { router as weatherRoutes } from "./routes/weather";
+import { router as userRoutes } from "./routes/user";
 import mongoose from "mongoose";
 
 dotenv.config();
@@ -20,6 +21,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 // Routes
 app.use("/api/cities", cityRoutes);
 app.use("/api/weather", weatherRoutes);
+app.use("/api/user", userRoutes);
 
 // Connection to DB
 mongoose
