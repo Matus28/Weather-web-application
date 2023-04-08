@@ -1,2 +1,2 @@
 # Weather-web-application
-Weather web app
+Application to show actual weather and forecast.
