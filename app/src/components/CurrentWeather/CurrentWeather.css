@@ -1,0 +1,54 @@
+.card-body.current-weather {
+  width: 470px;
+  height: 750px;
+  position: relative;
+}
+
+.current-weather {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 400px;
+}
+
+.current-weather button {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+.current-weather-switch {
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-end;
+  top: 15px;
+  right: 15px;
+}
+
+.current-weather-switch p {
+  margin: 0;
+}
+
+.current-weather img {
+  margin-top: 15px;
+}
+
+.current-weather__city h1 {
+  letter-spacing: 1px;
+  margin-bottom: 0px;
+}
+
+.current-weather__rain {
+  font-weight: 500;
+}
+
+.current-weather__temp h1 {
+  font-size: 70px;
+  margin-bottom: 15px;
+}
+
+.current-weather__condition h2 {
+  letter-spacing: 1px;
+}
