@@ -1,0 +1,8 @@
+.today-forecast-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0;
+}

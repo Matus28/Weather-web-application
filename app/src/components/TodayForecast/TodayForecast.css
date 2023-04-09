@@ -1,0 +1,5 @@
+.card-body.today-forecast {
+  font-weight: 800;
+  width: 100%;
+  min-height: 220px;
+}
