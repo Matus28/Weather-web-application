@@ -1,0 +1,42 @@
+header .container {
+  height: 80px;
+  padding: 4px 5px;
+  padding-bottom: 4px;
+  background-color: #090b0c91;
+  box-sizing: border-box;
+}
+
+header .container,
+header .tabs,
+header .authentication {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+header h2,
+header h3 {
+  margin: 10px 0;
+}
+
+header a {
+  box-sizing: border-box;
+  color: #f3f5f5;
+  text-decoration: none;
+  border: 1px solid #045db6;
+  border-radius: 0.8rem;
+  padding: 0 0.9rem;
+  max-height: 65px;
+  width: 110px;
+  box-shadow: 2px 2px 5px -2px rgba(0, 0, 0, 0.75);
+  text-align: center;
+}
+
+header a:hover {
+  background-color: #045db66b;
+}
+
+.authentication span {
+  color: #f3f5f5;
+}
