@@ -1,0 +1,31 @@
+.pages > .signup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 380px;
+}
+
+form.signup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  font-weight: 800;
+}
+
+.terms-and-conditions {
+  font-weight: 400;
+  margin: 15px 0;
+  text-align: center;
+}
+
+.signup label {
+  margin-top: 10px;
+}
+
+.signup button {
+  margin: 15px 0;
+}
