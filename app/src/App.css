@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Ubuntu", sans-serif;
-  background: url("../../public/img/sky-background.jpg") no-repeat center center;
+  background: url("../public/img/sky-background.jpg") no-repeat center center;
   background-repeat: no-repeat;
   background-size: 100% 100%;
   letter-spacing: 1px;
