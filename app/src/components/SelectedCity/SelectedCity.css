@@ -1,0 +1,23 @@
+.card-body.selected-city {
+  position: relative;
+  width: 380px;
+  min-height: 90px;
+  cursor: pointer;
+}
+
+.selected-city-weather__temp {
+  position: absolute;
+  top: 50px;
+  right: 15px;
+  font-size: 30px;
+}
+
+.selected-city-weather__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selected-city-weather__main > img {
+  width: 250px;
+}
