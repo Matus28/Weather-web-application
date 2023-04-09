@@ -1,0 +1,20 @@
+.air-condition-element {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: 800;
+}
+
+.air-condition-element__description {
+  display: flex;
+  align-items: center;
+}
+
+.air-condition-element img {
+  scale: 0.6;
+}
+
+.air-condition-element__value {
+  font-size: 20px;
+}
