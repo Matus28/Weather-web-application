@@ -1,0 +1,8 @@
+.card-body.week-forecast {
+  width: 280px;
+  min-height: 750px;
+}
+
+.week-forecast__title {
+  font-weight: 800;
+}
