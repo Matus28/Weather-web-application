@@ -19,11 +19,15 @@ export const useLogin = () => {
   return useMutation({
     mutationFn: async (value: FetchData) => {
       try {
-        const { data } = await axios.post("/api/user/login", value, {
-          validateStatus(status) {
-            return status === 200;
-          },
-        });
+        const { data } = await axios.post(
+          `${process.env.BACKEND_URL}/api/user/login`,
+          value,
+          {
+            validateStatus(status) {
+              return status === 200;
+            },
+          }
+        );
         return data as FetchUser;
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
