@@ -34,4 +34,5 @@ mongoose_1.default
     .catch((error) => {
     console.log(error);
 });
+exports.default = app;
 //# sourceMappingURL=index.js.map
