@@ -15,11 +15,4 @@ export default defineConfig({
       },
     },
   },
-  define: {
-    "process.env": {
-      BACKEND_URL:
-        process.env.BACKEND_URL ||
-        "https://weather-web-application-api.vercel.app",
-    },
-  },
 });
