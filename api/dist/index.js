@@ -9,10 +9,15 @@ const cities_1 = require("./routes/cities");
 const weather_1 = require("./routes/weather");
 const user_1 = require("./routes/user");
 const mongoose_1 = __importDefault(require("mongoose"));
+const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
 // APP creating
 const app = (0, express_1.default)();
 // Middleware
+app.use((0, cors_1.default)({
+    credentials: true,
+    origin: ["https://testing-vercell.vercel.app", "http://localhost:3000"],
+}));
 app.use(express_1.default.json());
 app.use((req, res, next) => {
     console.log(req.path, req.method);
