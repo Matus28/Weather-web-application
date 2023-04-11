@@ -16,7 +16,7 @@ app.use(
   cors({
     credentials: true,
     origin: [
-      "https://weather-web-application-app.vercel.app/",
+      "https://weather-web-application-app.vercel.app",
       "http://localhost:3000",
     ],
   })
