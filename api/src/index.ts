@@ -15,7 +15,10 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ["https://testing-vercell.vercel.app", "http://localhost:3000"],
+    origin: [
+      "https://weather-web-application-app.vercel.app/",
+      "http://localhost:3000",
+    ],
   })
 );
 app.use(express.json());
