@@ -16,7 +16,10 @@ const app = (0, express_1.default)();
 // Middleware
 app.use((0, cors_1.default)({
     credentials: true,
-    origin: ["https://testing-vercell.vercel.app", "http://localhost:3000"],
+    origin: [
+        "https://weather-web-application-app.vercel.app/",
+        "http://localhost:3000",
+    ],
 }));
 app.use(express_1.default.json());
 app.use((req, res, next) => {
