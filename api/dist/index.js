@@ -17,7 +17,7 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     credentials: true,
     origin: [
-        "https://weather-web-application-app.vercel.app/",
+        "https://weather-web-application-app.vercel.app",
         "http://localhost:3000",
     ],
 }));
