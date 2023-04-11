@@ -12,14 +12,18 @@ export const usePostCity = () => {
   return useMutation({
     mutationFn: async (value: CityData) => {
       try {
-        const { data } = await axios.post(`/api/cities`, value, {
-          headers: {
-            Authorization: `Bearer ${value.userValue.user?.token}`,
-          },
-          validateStatus(status) {
-            return status === 200;
-          },
-        });
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_API_URL}/api/cities`,
+          value,
+          {
+            headers: {
+              Authorization: `Bearer ${value.userValue.user?.token}`,
+            },
+            validateStatus(status) {
+              return status === 200;
+            },
+          }
+        );
         return data;
       } catch (error: unknown) {}
     },

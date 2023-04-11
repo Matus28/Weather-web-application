@@ -18,7 +18,7 @@ export const useWeatherAllCities = (
             const location: string = city;
             console.log(location);
             const result = await axios.get<WeatherData>(
-              `/api/weather/${location}`,
+              `${import.meta.env.VITE_API_URL}/api/weather/${location}`,
               {
                 headers: {
                   Authorization: `Bearer ${userValue.user?.token}`,

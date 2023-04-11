@@ -13,14 +13,18 @@ export const usePutDefaultCity = () => {
   return useMutation({
     mutationFn: async (value: CityData) => {
       try {
-        const { data } = await axios.put(`/api/cities/default`, value, {
-          headers: {
-            Authorization: `Bearer ${value.userValue.user?.token}`,
-          },
-          validateStatus(status) {
-            return status === 200;
-          },
-        });
+        const { data } = await axios.put(
+          `${import.meta.env.VITE_API_URL}/api/cities/default`,
+          value,
+          {
+            headers: {
+              Authorization: `Bearer ${value.userValue.user?.token}`,
+            },
+            validateStatus(status) {
+              return status === 200;
+            },
+          }
+        );
         return data;
       } catch (error: unknown) {}
     },

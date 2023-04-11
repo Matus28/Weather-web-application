@@ -16,14 +16,17 @@ export const useDefaultCity = (
     queryKey: ["default-city", userValue],
     queryFn: async (): Promise<City | unknown> => {
       try {
-        const result = await axios.get<string[]>(`/api/cities/default`, {
-          headers: {
-            Authorization: `Bearer ${userValue.user?.token}`,
-          },
-          validateStatus(status) {
-            return status === 200;
-          },
-        });
+        const result = await axios.get<string[]>(
+          `${import.meta.env.VITE_API_URL}/api/cities/default`,
+          {
+            headers: {
+              Authorization: `Bearer ${userValue.user?.token}`,
+            },
+            validateStatus(status) {
+              return status === 200;
+            },
+          }
+        );
         // console.log(result);
         return result.data;
       } catch (error: unknown) {

@@ -15,14 +15,17 @@ export const useCities = (
     queryKey: ["cities", userValue],
     queryFn: async (): Promise<City[] | unknown> => {
       try {
-        const result = await axios.get<City[]>(`/api/cities`, {
-          headers: {
-            Authorization: `Bearer ${userValue.user?.token}`,
-          },
-          validateStatus(status) {
-            return status === 200;
-          },
-        });
+        const result = await axios.get<City[]>(
+          `${import.meta.env.VITE_API_URL}/api/cities`,
+          {
+            headers: {
+              Authorization: `Bearer ${userValue.user?.token}`,
+            },
+            validateStatus(status) {
+              return status === 200;
+            },
+          }
+        );
         return result.data;
       } catch (error: unknown) {
         console.log(error);
