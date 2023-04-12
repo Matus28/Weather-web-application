@@ -55,7 +55,7 @@ export interface Forecast {
   date_epoch: number;
   day: {
     avghumidity: number;
-    avgtemp: number;
+    avgtemp_c: number;
     avgtemp_f: number;
     avgvis_km: number;
     avgvis_miles: number;
