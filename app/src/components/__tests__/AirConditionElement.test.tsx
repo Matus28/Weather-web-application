@@ -1,43 +1,41 @@
-import * as React from "react";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { AirConditionElement } from "../AirCondition/AirConditionElement";
 import { AirConditionData } from "../../utils/types";
 
-const airConditionData = {
-  condition: "Sunny",
+const airConditionData: AirConditionData = {
+  condition: "Wind speed",
   iconURL: "/image.png",
-  value: 34,
-  variable: "temp",
-  unit: "°C",
+  value: 5,
+  variable: "wind_speed",
+  unit: "km/h",
 };
 
 describe("tests AirConditionElement component", () => {
-  test("should render element from airConditionData variable", () => {
+  test("should render element with the Title Wind speed", () => {
+    const { container } = render(
+      <AirConditionElement data={airConditionData} />
+    );
+    const title = container.getElementsByClassName(
+      "air-condition-element__title"
+    )[0];
+    expect(title.textContent).toBe("Wind speed");
+  });
+
+  test("should render image element", () => {
+    const { container } = render(
+      <AirConditionElement data={airConditionData} />
+    );
+    const weatherIMG = container.querySelectorAll("img")[0] as HTMLImageElement;
+    expect(weatherIMG.alt).toContain("Image of condition's symbol");
+    expect(weatherIMG.src).toContain("/image.png");
+  });
+
+  test("should render element with right wind speed value", () => {
     const { container } = render(
       <AirConditionElement data={airConditionData} />
     );
 
-    expect(
-      container.getElementsByClassName("air-condition-element__title")[0]
-        .textContent
-    ).toBe("Sunny");
+    const temp = container.querySelector(".air-condition-element__value");
+    expect(temp?.textContent).toBe("5 km/h");
   });
 });
-
-// export const AirConditionElement = (props: {
-//   data: AirConditionData;
-// }): JSX.Element => {
-//   return (
-//     <div className="air-condition-element">
-//       <div className="air-condition-element__description">
-//         <img src={props.data.iconURL} alt="Image of condition's symbol" />
-//         <div className="air-condition-element__title">
-//           {props.data.condition}
-//         </div>
-//       </div>
-//       <div className="air-condition-element__value">
-//         {`${props.data.value} ${props.data.unit}`}
-//       </div>
-//     </div>
-//   );
-// };
