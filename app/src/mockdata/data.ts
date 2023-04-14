@@ -6891,3 +6891,9 @@ export const testWeatherData: WeatherData = {
     ],
   },
 };
+
+export const testWeatherCondition = {
+  code: 1003,
+  icon: "//cdn.weatherapi.com/weather/64x64/day/116.png",
+  text: "Partly cloudy",
+};
