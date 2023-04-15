@@ -1,6 +1,6 @@
 import { AlertColor } from "@mui/material";
 
-const getPosition = (
+export const getPosition = (
   options?: PositionOptions
 ): Promise<GeolocationPosition> => {
   return new Promise((resolve, reject) =>

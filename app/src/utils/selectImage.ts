@@ -4,12 +4,13 @@ import { ConditionImages, ConditionImagesURL } from "../data/conditions";
 export const selectImage = (
   data: WeatherCondition,
   isDay: boolean,
-  type: string
+  type: string,
+  ConditImgsURL: ConditionImages[] = ConditionImagesURL
 ): string => {
   const dayTime = isDay ? "day" : "night";
   const condition = data.text;
 
-  const filteredCondition = ConditionImagesURL.filter(
+  const filteredCondition = ConditImgsURL.filter(
     (imageCondition: ConditionImages) => imageCondition.condition === condition
   )[0];
 
