@@ -7,7 +7,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 export const CityList = (props: {
   cities: City[];
   weatherData: WeatherData[];
-  selected: string;
+  selected?: string;
   onSelect: (data: WeatherData) => void;
 }): JSX.Element => {
   const { state: userValue } = useAuthContext();
