@@ -41,8 +41,8 @@ const CityBlock = (props: {
         <div className="city-block-temp">
           {`${Math.round(props.data.current.temp_c)}°C`}
         </div>
-        <CircleButton>
-          <ClearIcon onClick={handleRemoveCity} />
+        <CircleButton onClick={handleRemoveCity}>
+          <ClearIcon />
         </CircleButton>
       </div>
     </Card>
