@@ -4,17 +4,14 @@ import { Card } from "../Card/Card";
 import { WeatherImage } from "../WeatherImage/WeatherImage";
 import ClearIcon from "@mui/icons-material/Clear";
 import "./CityBlock.css";
-import { useDeleteCity } from "../../hooks/useDeleteCity";
-import { useAuthContext } from "../../hooks/useAuthContext";
 
 const CityBlock = (props: {
   city: City;
   data: WeatherData;
   isSelected: boolean;
   onSelect: (data: WeatherData) => void;
+  onRemove: (cityId: string, cityName: string) => void;
 }): JSX.Element => {
-  const { state: userValue } = useAuthContext();
-
   const time = new Date(props.data.location.localtime).toLocaleTimeString(
     navigator.language,
     {
@@ -23,14 +20,8 @@ const CityBlock = (props: {
     }
   );
 
-  const deleteMutationRes = useDeleteCity();
-
   const handleRemoveCity = (): void => {
-    deleteMutationRes.mutateAsync({
-      _id: props.city._id,
-      cityName: props.data.location.name,
-      userValue: userValue,
-    });
+    props.onRemove(props.city._id, props.city.cityName);
   };
 
   return (
