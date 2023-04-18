@@ -1,6 +1,8 @@
 import { City, WeatherData } from "../../utils/types";
 import CityBlock from "../CityBlock/CityBlock";
+import { useDeleteCity } from "../../hooks/useDeleteCity";
 import "./CityList.css";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 export const CityList = (props: {
   cities: City[];
@@ -8,8 +10,18 @@ export const CityList = (props: {
   selected: string;
   onSelect: (data: WeatherData) => void;
 }): JSX.Element => {
-  console.log(props.cities);
-  console.log(props.weatherData);
+  const { state: userValue } = useAuthContext();
+
+  const deleteMutationRes = useDeleteCity();
+
+  const handleRemoveCity = (cityId: string, cityName: string): void => {
+    deleteMutationRes.mutateAsync({
+      _id: cityId,
+      cityName: cityName,
+      userValue: userValue,
+    });
+  };
+
   return (
     <div className="city-list">
       {props.weatherData &&
@@ -18,13 +30,14 @@ export const CityList = (props: {
             <CityBlock
               key={index}
               city={
-                props.cities.filter(
-                  (city: City) => city.cityName === element.location.name
+                props.cities.filter((city: City) =>
+                  element.location.name.includes(city.cityName)
                 )[0]
               }
               data={element}
               isSelected={props.selected === element.location.name}
               onSelect={props.onSelect}
+              onRemove={handleRemoveCity}
             />
           );
         })}
