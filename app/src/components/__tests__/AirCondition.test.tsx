@@ -1,11 +1,11 @@
 import { render } from "@testing-library/react";
 import { AirCondition } from "../AirCondition/AirCondition";
-import { testWeatherData } from "../../mockdata/data";
+import { testBAWeatherData } from "../../mockdata/data";
 
 describe("tests AirCondition component", () => {
   test("should render element with the Title Wind speed", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
     const title = container.getElementsByClassName(
       "air-condition-element__title"
@@ -15,7 +15,7 @@ describe("tests AirCondition component", () => {
 
   test("should render image element", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
     const weatherIMG = container.querySelectorAll("img")[0] as HTMLImageElement;
     expect(weatherIMG.alt).toContain("Image of condition's symbol");
@@ -24,7 +24,7 @@ describe("tests AirCondition component", () => {
 
   test("should render element with right wind speed value", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
 
     const temp = container.querySelector(".air-condition-element__value");
@@ -33,7 +33,7 @@ describe("tests AirCondition component", () => {
 
   test("should render element with the Title Wind direction", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
     const title = container.getElementsByClassName(
       "air-condition-element__title"
@@ -43,7 +43,7 @@ describe("tests AirCondition component", () => {
 
   test("should render image element", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
     const weatherIMG = container.querySelectorAll("img")[1] as HTMLImageElement;
     expect(weatherIMG.alt).toContain("Image of condition's symbol");
@@ -52,7 +52,7 @@ describe("tests AirCondition component", () => {
 
   test("should render element with right wind direction", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
 
     const temp = container.querySelectorAll(".air-condition-element__value")[1];
@@ -61,7 +61,7 @@ describe("tests AirCondition component", () => {
 
   test("should render element with the Title Real feel", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
     const title = container.getElementsByClassName(
       "air-condition-element__title"
@@ -71,7 +71,7 @@ describe("tests AirCondition component", () => {
 
   test("should render image element", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
     const weatherIMG = container.querySelectorAll("img")[2] as HTMLImageElement;
     expect(weatherIMG.alt).toContain("Image of condition's symbol");
@@ -80,7 +80,7 @@ describe("tests AirCondition component", () => {
 
   test("should render element with right real feel temperature", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
 
     const temp = container.querySelectorAll(".air-condition-element__value")[2];
@@ -89,7 +89,7 @@ describe("tests AirCondition component", () => {
 
   test("should render element with the Title UV Index", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
     const title = container.getElementsByClassName(
       "air-condition-element__title"
@@ -99,7 +99,7 @@ describe("tests AirCondition component", () => {
 
   test("should render image element", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
     const weatherIMG = container.querySelectorAll("img")[2] as HTMLImageElement;
     expect(weatherIMG.alt).toContain("Image of condition's symbol");
@@ -108,7 +108,7 @@ describe("tests AirCondition component", () => {
 
   test("should render element with right UV index", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
 
     const temp = container.querySelectorAll(".air-condition-element__value")[3];
@@ -117,7 +117,7 @@ describe("tests AirCondition component", () => {
 
   test("should render element with the Title Humidity", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
     const title = container.getElementsByClassName(
       "air-condition-element__title"
@@ -127,7 +127,7 @@ describe("tests AirCondition component", () => {
 
   test("should render image element", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
     const weatherIMG = container.querySelectorAll("img")[4] as HTMLImageElement;
     expect(weatherIMG.alt).toContain("Image of condition's symbol");
@@ -136,7 +136,7 @@ describe("tests AirCondition component", () => {
 
   test("should render element with right Humidity value", () => {
     const { container } = render(
-      <AirCondition weatherData={testWeatherData} />
+      <AirCondition weatherData={testBAWeatherData} />
     );
 
     const temp = container.querySelectorAll(".air-condition-element__value")[4];
