@@ -14,8 +14,6 @@ testBAWeatherData.location.name = "Bratislava";
 testBAWeatherData.location.localtime = "2023-04-16 12:00";
 testBAWeatherData.current.temp_c = 13;
 
-const handleSelect = jest.fn();
-
 jest.mock("../../hooks/useAuthContext", () => {
   return {
     useAuthContext: jest.fn().mockReturnValue({
@@ -37,6 +35,9 @@ jest.mock("../../hooks/useDeleteCity", () => {
 });
 
 describe("CityBlock component test", () => {
+  const handleSelect = jest.fn();
+  const handleRemove = jest.fn();
+
   test("renders div element for city with name Bratislava with all information", () => {
     const { container } = render(
       <CityBlock
@@ -44,6 +45,7 @@ describe("CityBlock component test", () => {
         data={testBAWeatherData}
         isSelected={false}
         onSelect={handleSelect}
+        onRemove={handleRemove}
       />
     );
     const divCityBA = container.querySelector(".city-block");
@@ -57,9 +59,6 @@ describe("CityBlock component test", () => {
     const imgWeather = screen.getByAltText(
       "Symbol image of weather"
     ) as HTMLImageElement;
-    const buttonDelete = container.getElementsByTagName(
-      "button"
-    )[0] as HTMLButtonElement;
     expect(divCityBA).toBeDefined();
     expect(divCityName?.textContent).toBe("Bratislava");
     expect(divCityTime?.textContent).toBe("12:00 PM");
@@ -75,74 +74,33 @@ describe("CityBlock component test", () => {
         data={testBAWeatherData}
         isSelected={false}
         onSelect={handleSelect}
+        onRemove={handleRemove}
       />
     );
-    const buttonDelete = container.getElementsByTagName(
+    const buttonRemove = container.getElementsByTagName(
       "button"
     )[0] as HTMLButtonElement;
-    expect(buttonDelete).toBeDefined();
+    expect(buttonRemove).toBeDefined();
 
-    fireEvent.click(buttonDelete);
+    fireEvent.click(buttonRemove);
+    expect(handleRemove).toHaveBeenCalledTimes(1);
+  });
+
+  test("renders city block element that can be selectable", () => {
+    const { container } = render(
+      <CityBlock
+        city={testCity}
+        data={testBAWeatherData}
+        isSelected={true}
+        onSelect={handleSelect}
+        onRemove={handleRemove}
+      />
+    );
+    const divCity = container.getElementsByClassName("card-body")[0];
+    expect(divCity).toBeDefined();
+
+    fireEvent.select(divCity);
+    expect(handleSelect).toHaveBeenCalledTimes(1);
+    expect(divCity.classList.contains("active")).toBeTruthy();
   });
 });
-
-// import { City, WeatherData } from "../../utils/types";
-// import { CircleButton } from "../Button/CustomizedButton";
-// import { Card } from "../Card/Card";
-// import { WeatherImage } from "../WeatherImage/WeatherImage";
-// import ClearIcon from "@mui/icons-material/Clear";
-// import { useDeleteCity } from "../../hooks/useDeleteCity";
-// import { useAuthContext } from "../../hooks/useAuthContext";
-
-// const CityBlock = (props: {
-//   city: City;
-//   data: WeatherData;
-//   isSelected: boolean;
-//   onSelect: (data: WeatherData) => void;
-// }): JSX.Element => {
-//   const { state: userValue } = useAuthContext();
-
-//   const time = new Date(props.data.location.localtime).toLocaleTimeString(
-//     navigator.language,
-//     {
-//       hour: "2-digit",
-//       minute: "2-digit",
-//     }
-//   );
-
-//   const deleteMutationRes = useDeleteCity();
-
-//   const handleRemoveCity = (): void => {
-//     deleteMutationRes.mutateAsync({
-//       _id: props.city._id,
-//       cityName: props.data.location.name,
-//       userValue: userValue,
-//     });
-//   };
-
-//   return (
-//     <Card isSelected={props.isSelected} class="city">
-//       <div className="city-block" onClick={() => props.onSelect(props.data)}>
-//         <WeatherImage
-//           data={props.data.current.condition}
-//           isDay={props.data.current.is_day ? true : false}
-//           type="forecast"
-//         />
-//         <div className="city-block-description">
-//           <div className="city-block-description__name">
-//             {props.data.location.name}
-//           </div>
-//           <div className="city-block-description__time">{time}</div>
-//         </div>
-//         <div className="city-block-temp">
-//           {`${Math.round(props.data.current.temp_c)}°C`}
-//         </div>
-//         <CircleButton>
-//           <ClearIcon onClick={handleRemoveCity} />
-//         </CircleButton>
-//       </div>
-//     </Card>
-//   );
-// };
-
-// export default CityBlock;
