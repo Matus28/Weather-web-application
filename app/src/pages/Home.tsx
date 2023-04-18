@@ -62,7 +62,11 @@ const Home = (): JSX.Element => {
       "city-name"
     ) as HTMLInputElement;
 
-    setCity(inputCityName.value);
+    const newCity =
+      inputCityName.value.charAt(0).toUpperCase() +
+      inputCityName.value.slice(1).toLowerCase();
+
+    setCity(newCity);
   };
 
   const changeSearchValueHandler = (newValue: string): void => {

@@ -58,8 +58,12 @@ const Cities = (): JSX.Element => {
       "city-name"
     ) as HTMLInputElement;
 
+    const newCity =
+      inputCityName.value.charAt(0).toUpperCase() +
+      inputCityName.value.slice(1).toLowerCase();
+
     postMutationRes.mutateAsync({
-      cityName: inputCityName.value,
+      cityName: newCity,
       userValue: userValue,
     });
   };
