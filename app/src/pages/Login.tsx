@@ -2,7 +2,7 @@ import * as React from "react";
 import { BlueStyledButton } from "../components/Button/CustomizedButton";
 import { Card } from "../components/Card/Card";
 import { CustomizedTextField } from "../components/Input/CustomizedTextField";
-import PasswordTextField from "../components/Input/PasswordTextField";
+import { PasswordTextField } from "../components/Input/PasswordTextField";
 import { useLogin } from "../hooks/useLogin";
 
 import "./Login.css";
@@ -34,7 +34,7 @@ const Login = (): JSX.Element => {
           <label>Password:</label>
           <PasswordTextField
             onChange={setPassword}
-            value={email}
+            value={password}
             name={"password"}
           />
 
