@@ -53,6 +53,7 @@ export const CustomizedTextField = (props: {
           shrink: true,
         }}
         required
+        value={props.value}
         onChange={onChangeHandler}
         // error={props.value === ""}
         // helperText={props.value === "" ? "Empty field!" : " "}
