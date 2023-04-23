@@ -42,7 +42,7 @@ const SelectedCity = (props: { data: WeatherData | null }): JSX.Element => {
           )}
         </div>
         <div className="selected-city-weather__three-days-forecast">
-          <div className="selected-city-weather__today-forecast__title">
+          <div className="selected-city-weather__three-days-forecast__title">
             3 day forecast
           </div>
           {props.data && (
