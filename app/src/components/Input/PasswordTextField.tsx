@@ -42,7 +42,7 @@ const theme = createTheme({
   },
 });
 
-export default function PasswordTextField(props: {
+export function PasswordTextField(props: {
   value: string;
   name: string;
   isNotSame?: boolean;
@@ -72,6 +72,7 @@ export default function PasswordTextField(props: {
             id="outlined-adornment-password"
             type={showPassword ? "text" : "password"}
             name={props.name}
+            value={props.value}
             error={props.isNotSame === true}
             onChange={onChangeHandler}
             endAdornment={
