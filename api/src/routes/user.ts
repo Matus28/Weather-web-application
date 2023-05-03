@@ -1,5 +1,9 @@
 import express from "express";
-import { loginUser, signupUser } from "../controllers/userController";
+import {
+  loginUser,
+  removeUser,
+  signupUser,
+} from "../controllers/userController";
 
 export const router = express.Router();
 
@@ -8,3 +12,6 @@ router.post("/login", loginUser);
 
 // Signup route
 router.post("/signup", signupUser);
+
+// Remove user route
+router.delete("/remove", removeUser);

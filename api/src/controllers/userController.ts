@@ -45,3 +45,35 @@ export const signupUser = async (
     }
   }
 };
+
+export const removeUser = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const { email } = req.body;
+  const { authorization } = req.headers;
+  const _idAdmin = "644ea44611143a03901f3e5f";
+
+  if (!authorization) {
+    return;
+  }
+
+  const token = authorization.replace("Bearer ", "");
+  const { _id } = jwt.verify(
+    token,
+    process.env.SECRET as jwt.Secret
+  ) as jwt.JwtPayload;
+
+  if (_id !== _idAdmin) {
+    return;
+  }
+
+  try {
+    const user = await User.deleteOne({ email: email });
+    res.status(200).json(user);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
+};

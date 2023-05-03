@@ -37,12 +37,13 @@ app.use("/api/user", userRoutes);
 mongoose
   .connect(process.env.MONGO_URI || "")
   .then(() => {
-    // Listen for request
-    app.listen(process.env.PORT, () => {
-      console.log(
-        `[api]: Connected to DB & Server is running at http://localhost:${process.env.PORT}`
-      );
-    });
+    if (process.env.NODE_ENV !== "test") {
+      app.listen(process.env.PORT, () => {
+        console.log(
+          `[api]: Connected to DB & Server is running at http://localhost:${process.env.PORT}`
+        );
+      });
+    }
   })
   .catch((error) => {
     console.log(error);

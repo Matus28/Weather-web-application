@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.requireAuth = void 0;
-const userModel_js_1 = require("../models/userModel.js");
+const userModel_1 = require("../models/userModel");
 const dotenv_1 = __importDefault(require("dotenv"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 dotenv_1.default.config();
@@ -28,7 +28,7 @@ const requireAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
     try {
         const { _id } = jsonwebtoken_1.default.verify(token, process.env.SECRET);
         // attach user property to request (for another middleware)
-        req.user = (_a = (yield userModel_js_1.User.findOne({ _id }).select("_id"))) !== null && _a !== void 0 ? _a : "";
+        req.user = (_a = (yield userModel_1.User.findOne({ _id }).select("_id"))) !== null && _a !== void 0 ? _a : "";
         next();
     }
     catch (error) {
