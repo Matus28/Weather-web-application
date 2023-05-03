@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.signupUser = exports.loginUser = void 0;
+exports.removeUser = exports.signupUser = exports.loginUser = void 0;
 const userModel_1 = require("../models/userModel");
 const dotenv_1 = __importDefault(require("dotenv"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -50,4 +50,27 @@ const signupUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.signupUser = signupUser;
+const removeUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email } = req.body;
+    const { authorization } = req.headers;
+    const _idAdmin = "644ea44611143a03901f3e5f";
+    if (!authorization) {
+        return;
+    }
+    const token = authorization.replace("Bearer ", "");
+    const { _id } = jsonwebtoken_1.default.verify(token, process.env.SECRET);
+    if (_id !== _idAdmin) {
+        return;
+    }
+    try {
+        const user = yield userModel_1.User.deleteOne({ email: email });
+        res.status(200).json(user);
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            res.status(400).json({ error: error.message });
+        }
+    }
+});
+exports.removeUser = removeUser;
 //# sourceMappingURL=userController.js.map

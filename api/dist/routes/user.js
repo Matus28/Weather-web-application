@@ -11,4 +11,6 @@ exports.router = express_1.default.Router();
 exports.router.post("/login", userController_1.loginUser);
 // Signup route
 exports.router.post("/signup", userController_1.signupUser);
+// Remove user route
+exports.router.delete("/remove", userController_1.removeUser);
 //# sourceMappingURL=user.js.map
