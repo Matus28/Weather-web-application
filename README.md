@@ -64,3 +64,13 @@ yarn build
 - <b>MONGO_URI</b> = Connection string, URI for defining connections between applications and MongoDB instance.
 - <b>WEATHER_API_KEY</b> = API key for accessing data from `weatherapi.com` API.
 - <b>SECRET</b> = Secret key for JWT based authentication purposes.
+5. Run server (api) and frontend application (app) in separate terminals. For running server in first terminal change directory:
+```
+cd api/
+yarn dev
+```
+6. Run frontend (app) similar as server, but in app direcotry:
+---
+cd api/
+yarn dev
+```
