@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeUser = exports.signupUser = exports.loginUser = void 0;
+exports.getUsers = exports.removeUser = exports.signupUser = exports.loginUser = void 0;
 const userModel_1 = require("../models/userModel");
 const dotenv_1 = __importDefault(require("dotenv"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -45,21 +45,27 @@ const signupUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
     catch (error) {
         if (error instanceof Error) {
-            res.status(400).json({ error: error.message });
+            let statusCode = 400;
+            if (error.message === "Email already used.")
+                statusCode = 409;
+            res.status(statusCode).json({ error: error.message });
         }
     }
 });
 exports.signupUser = signupUser;
+// Remove user (avalible for admin)
 const removeUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.body;
     const { authorization } = req.headers;
     const _idAdmin = "644ea44611143a03901f3e5f";
     if (!authorization) {
+        res.status(401).json({ error: "Unauthorized." });
         return;
     }
     const token = authorization.replace("Bearer ", "");
     const { _id } = jsonwebtoken_1.default.verify(token, process.env.SECRET);
     if (_id !== _idAdmin) {
+        res.status(401).json({ error: "User unauthorized for this action." });
         return;
     }
     try {
@@ -73,4 +79,29 @@ const removeUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.removeUser = removeUser;
+// GET user list (for admin only)
+const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { authorization } = req.headers;
+    const _idAdmin = "644ea44611143a03901f3e5f";
+    if (!authorization) {
+        res.status(401).json({ error: "Unauthorized." });
+        return;
+    }
+    const token = authorization.replace("Bearer ", "");
+    const { _id } = jsonwebtoken_1.default.verify(token, process.env.SECRET);
+    if (_id !== _idAdmin) {
+        res.status(401).json({ error: "User unauthorized for this action." });
+        return;
+    }
+    try {
+        const users = yield userModel_1.User.find();
+        res.status(200).json(users);
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            res.status(400).json({ error: error.message });
+        }
+    }
+});
+exports.getUsers = getUsers;
 //# sourceMappingURL=userController.js.map
