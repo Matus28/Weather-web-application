@@ -96,11 +96,13 @@ describe("CityBlock component test", () => {
         onRemove={handleRemove}
       />
     );
-    const divCity = container.getElementsByClassName("card-body")[0];
-    expect(divCity).toBeDefined();
+    const divCityCard = container.getElementsByClassName("card-body")[0];
+    const divCityBlock = container.getElementsByClassName("city-block")[0];
+    expect(divCityCard).toBeDefined();
+    expect(divCityBlock).toBeDefined();
 
-    fireEvent.select(divCity);
+    fireEvent.click(divCityBlock);
     expect(handleSelect).toHaveBeenCalledTimes(1);
-    expect(divCity.classList.contains("active")).toBeTruthy();
+    expect(divCityCard.classList.contains("active")).toBeTruthy();
   });
 });
