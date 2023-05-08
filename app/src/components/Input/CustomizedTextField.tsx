@@ -44,6 +44,7 @@ export const CustomizedTextField = (props: {
   return (
     <ThemeProvider theme={theme}>
       <TextField
+        data-testid={props.name}
         size="small"
         variant="outlined"
         type={props.type}
