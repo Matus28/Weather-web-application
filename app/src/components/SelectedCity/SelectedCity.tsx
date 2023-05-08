@@ -1,3 +1,4 @@
+import * as React from "react";
 import { WeatherData } from "../../utils/types";
 import { Card } from "../Card/Card";
 import { WeatherImage } from "../WeatherImage/WeatherImage";
@@ -5,7 +6,7 @@ import { TodayForecastList } from "../TodayForecast/TodayForecastList";
 import { WeekForecastList } from "../WeekForecast/WeekForecastList";
 import "./SelectedCity.css";
 
-const SelectedCity = (props: { data: WeatherData | null }): JSX.Element => {
+const CityComponent = (props: { data: WeatherData | null }): JSX.Element => {
   return (
     <Card class="selected-city">
       <div className="selected-city-weather">
@@ -57,4 +58,4 @@ const SelectedCity = (props: { data: WeatherData | null }): JSX.Element => {
   );
 };
 
-export default SelectedCity;
+export const SelectedCity = React.memo(CityComponent);
