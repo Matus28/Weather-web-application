@@ -9,7 +9,6 @@ export const WeekForecastElement = (props: {
   const weekday = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const date = new Date(props.forecast.date);
   const day = date.getDay();
-  console.log(props.isToday ? "Today" : weekday[day]);
 
   return (
     <div className="week-forecast-element">
