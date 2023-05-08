@@ -70,7 +70,7 @@ cd api/
 yarn dev
 ```
 6. Run frontend (app) similar as server, but in app direcotry:
----
+```
 cd api/
 yarn dev
 ```
