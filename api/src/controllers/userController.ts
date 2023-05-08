@@ -41,11 +41,14 @@ export const signupUser = async (
     res.status(200).json({ email, token });
   } catch (error: unknown) {
     if (error instanceof Error) {
-      res.status(400).json({ error: error.message });
+      let statusCode: number = 400;
+      if (error.message === "Email already used.") statusCode = 409;
+      res.status(statusCode).json({ error: error.message });
     }
   }
 };
 
+// Remove user (avalible for admin)
 export const removeUser = async (
   req: Request,
   res: Response
@@ -55,6 +58,7 @@ export const removeUser = async (
   const _idAdmin = "644ea44611143a03901f3e5f";
 
   if (!authorization) {
+    res.status(401).json({ error: "Unauthorized." });
     return;
   }
 
@@ -65,12 +69,43 @@ export const removeUser = async (
   ) as jwt.JwtPayload;
 
   if (_id !== _idAdmin) {
+    res.status(401).json({ error: "User unauthorized for this action." });
     return;
   }
 
   try {
     const user = await User.deleteOne({ email: email });
     res.status(200).json(user);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      res.status(400).json({ error: error.message });
+    }
+  }
+};
+
+// GET user list (for admin only)
+export const getUsers = async (req: Request, res: Response): Promise<void> => {
+  const { authorization } = req.headers;
+  const _idAdmin = "644ea44611143a03901f3e5f";
+  if (!authorization) {
+    res.status(401).json({ error: "Unauthorized." });
+    return;
+  }
+
+  const token = authorization.replace("Bearer ", "");
+  const { _id } = jwt.verify(
+    token,
+    process.env.SECRET as jwt.Secret
+  ) as jwt.JwtPayload;
+
+  if (_id !== _idAdmin) {
+    res.status(401).json({ error: "User unauthorized for this action." });
+    return;
+  }
+
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
   } catch (error: unknown) {
     if (error instanceof Error) {
       res.status(400).json({ error: error.message });
