@@ -20,13 +20,18 @@ const CityBlock = (props: {
     }
   );
 
-  const handleRemoveCity = (): void => {
+  const handleRemoveCity = (event: React.MouseEvent): void => {
+    // Stop event propagation (only remove, not select event)
+    event.stopPropagation();
     props.onRemove(props.city._id, props.city.cityName);
   };
-
   return (
     <Card isSelected={props.isSelected} class="city">
-      <div className="city-block" onClick={() => props.onSelect(props.data)}>
+      <div
+        className="city-block"
+        tabIndex={0}
+        onClick={() => props.onSelect(props.data)}
+      >
         <WeatherImage
           data={props.data.current.condition}
           isDay={props.data.current.is_day ? true : false}
