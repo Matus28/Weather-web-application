@@ -2,7 +2,8 @@ import * as React from "react";
 import { BlueStyledButton } from "../components/Button/CustomizedButton";
 import { CityList } from "../components/City/CityList";
 import { SearchCityInput } from "../components/Input/SearchCityInput";
-import SelectedCity from "../components/SelectedCity/SelectedCity";
+import Loading from "../components/Loading/Loading";
+import { SelectedCity } from "../components/SelectedCity/SelectedCity";
 import { useSnackBar } from "../context/SnackbarContext";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useCities } from "../hooks/useCities";
@@ -39,8 +40,6 @@ const Cities = (): JSX.Element => {
         }
       }
     }
-    console.log(weatherData);
-    console.log(cities);
   }, [weatherData]);
 
   // React.useEffect(() => {
@@ -66,6 +65,8 @@ const Cities = (): JSX.Element => {
       cityName: newCity,
       userValue: userValue,
     });
+
+    setSearchValue("");
   };
 
   const changeSearchValueHandler = (newValue: string): void => {
@@ -73,7 +74,6 @@ const Cities = (): JSX.Element => {
   };
 
   const handleSelect = (data: WeatherData): void => {
-    console.log(data);
     setSelectedCity(data);
   };
 
@@ -89,7 +89,8 @@ const Cities = (): JSX.Element => {
         </BlueStyledButton>
       </form>
       <div className="city-weather-container">
-        {weatherData && allLoaded && (
+        {!allLoaded && <Loading />}
+        {weatherData.length > 0 && allLoaded && (
           <CityList
             cities={cities ?? []}
             weatherData={weatherData.map(
@@ -99,7 +100,9 @@ const Cities = (): JSX.Element => {
             onSelect={handleSelect}
           />
         )}
-        {weatherData && <SelectedCity data={selectedCity} />}
+        {weatherData.length > 0 && allLoaded && (
+          <SelectedCity data={selectedCity} />
+        )}
       </div>
     </div>
   );
