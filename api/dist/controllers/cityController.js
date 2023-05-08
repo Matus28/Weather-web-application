@@ -45,7 +45,7 @@ const getDefaultCity = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.getDefaultCity = getDefaultCity;
 // POST new city
 const addCity = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { cityName } = req.body;
+    let { cityName } = req.body;
     let isValidName = false;
     try {
         const URL = `http://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHER_API_KEY}&q=${cityName}&days=7`;
@@ -54,6 +54,7 @@ const addCity = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (data === null || data === void 0 ? void 0 : data.error)
             throw new Error(data.error.message);
         isValidName = true;
+        cityName = data.location.name;
     }
     catch (error) {
         if (error instanceof Error) {

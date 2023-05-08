@@ -23,7 +23,7 @@ const Login = (): JSX.Element => {
       <Card>
         <form id="login-form" className="login" onSubmit={handleSubmit}>
           <h1>Login</h1>
-          <label>Email:</label>
+          <label htmlFor="email">Email:</label>
           <CustomizedTextField
             type={"email"}
             onChange={setEmail}
@@ -31,7 +31,7 @@ const Login = (): JSX.Element => {
             name={"email"}
           />
 
-          <label>Password:</label>
+          <label htmlFor="password">Password:</label>
           <PasswordTextField
             onChange={setPassword}
             value={password}

@@ -31,7 +31,7 @@ const Signup = (): JSX.Element => {
       <Card>
         <form id="signup-form" className="signup" onSubmit={handleSubmit}>
           <h1>Sign up</h1>
-          <label>Email:</label>
+          <label htmlFor="email">Email:</label>
           <CustomizedTextField
             type={"email"}
             onChange={setEmail}
@@ -40,14 +40,14 @@ const Signup = (): JSX.Element => {
             isError={error ? true : false}
           />
 
-          <label>Password:</label>
+          <label htmlFor="password">Password:</label>
           <PasswordTextField
             onChange={setPassword}
             value={password}
             name={"password"}
           />
 
-          <label>Confirm Password:</label>
+          <label htmlFor="confirm-password">Confirm Password:</label>
           <PasswordTextField
             onChange={setConfirmPassword}
             value={confirmPassword}

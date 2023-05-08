@@ -12,5 +12,7 @@ exports.router.post("/login", userController_1.loginUser);
 // Signup route
 exports.router.post("/signup", userController_1.signupUser);
 // Remove user route
-exports.router.delete("/remove", userController_1.removeUser);
+exports.router.delete("/", userController_1.removeUser);
+// Get user list (only avalible for admin)
+exports.router.get("/", userController_1.getUsers);
 //# sourceMappingURL=user.js.map

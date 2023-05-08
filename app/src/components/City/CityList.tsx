@@ -15,6 +15,10 @@ export const CityList = (props: {
   const deleteMutationRes = useDeleteCity();
 
   const handleRemoveCity = (cityId: string, cityName: string): void => {
+    if (cityName === props.selected) {
+      props.onSelect(props.weatherData[0]);
+    }
+
     deleteMutationRes.mutateAsync({
       _id: cityId,
       cityName: cityName,
@@ -31,7 +35,9 @@ export const CityList = (props: {
               key={index}
               city={
                 props.cities.filter((city: City) =>
-                  element.location.name.includes(city.cityName)
+                  element.location.name
+                    .toLowerCase()
+                    .includes(city.cityName.toLowerCase())
                 )[0]
               }
               data={element}

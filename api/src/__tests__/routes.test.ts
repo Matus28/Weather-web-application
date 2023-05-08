@@ -84,6 +84,7 @@ describe("test cities routes", () => {
           .expect(200)
           .end((err: Error, res: Response) => {
             if (err) return done(err);
+            expect(res.body[2].cityName).toBe("Pezinok");
             const addedCity: City = res.body.filter(
               (city: City) => city.cityName === "Pezinok"
             )[0];
@@ -281,10 +282,37 @@ describe("test cities routes", () => {
       })
       .end((err: Error, res: Response) => {
         if (err) done(err);
-        expect(res.statusCode).toBe(400);
+        expect(res.statusCode).toBe(409);
         expect(res.body.error).toBe("Email already used.");
 
         done();
+      });
+  });
+
+  test("removes user if already exist (before creating in the next test)", (done: jest.DoneCallback) => {
+    request(app)
+      .post("/api/user/login")
+      .send({
+        email: "admin@gmail.com",
+        password: "Admin123!",
+      })
+      .expect(200)
+      .end((err: Error, res: Response) => {
+        if (err) done(err);
+        const tokenAdmin = res.body.token;
+
+        request(app)
+          .delete("/api/user")
+          .set({ Authorization: `Bearer ${tokenAdmin}` })
+          .send({
+            email: "newTest@gmail.com",
+          })
+          .end((error: Error, response: Response) => {
+            if (error) done(error);
+
+            expect(response.statusCode).toBe(200);
+            done();
+          });
       });
   });
 
@@ -323,7 +351,7 @@ describe("test cities routes", () => {
         adminToken = res.body.token;
 
         request(app)
-          .delete("/api/user/remove")
+          .delete("/api/user")
           .set({ Authorization: `Bearer ${adminToken}` })
           .send({
             email: "newTest@gmail.com",

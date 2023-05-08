@@ -1,9 +1,10 @@
+import * as React from "react";
 import { Forecast } from "../../utils/types";
 import { Card } from "../Card/Card";
 import { WeekForecastList } from "./WeekForecastList";
 import "./WeekForecast.css";
 
-export const WeekForecast = (props: {
+const ForecastComponent = (props: {
   forecastData: Forecast[];
 }): JSX.Element => {
   return (
@@ -15,3 +16,5 @@ export const WeekForecast = (props: {
     </Card>
   );
 };
+
+export const WeekForecast = React.memo(ForecastComponent);

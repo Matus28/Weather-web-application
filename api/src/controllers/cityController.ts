@@ -37,7 +37,7 @@ export const getDefaultCity = async (
 
 // POST new city
 export const addCity = async (req: Request, res: Response): Promise<void> => {
-  const { cityName } = req.body;
+  let { cityName } = req.body;
   let isValidName: boolean = false;
 
   try {
@@ -46,6 +46,7 @@ export const addCity = async (req: Request, res: Response): Promise<void> => {
     const data = await result.json();
     if (data?.error) throw new Error(data.error.message);
     isValidName = true;
+    cityName = data.location.name;
   } catch (error: unknown) {
     if (error instanceof Error) {
       res.status(400).json({ error: error.message });

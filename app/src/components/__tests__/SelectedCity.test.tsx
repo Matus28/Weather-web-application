@@ -1,4 +1,4 @@
-import SelectedCity from "../SelectedCity/SelectedCity";
+import { SelectedCity } from "../SelectedCity/SelectedCity";
 import { render } from "@testing-library/react";
 import { testBAWeatherData } from "../../mockdata/data";
 

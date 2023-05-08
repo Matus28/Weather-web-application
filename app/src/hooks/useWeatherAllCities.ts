@@ -16,7 +16,6 @@ export const useWeatherAllCities = (
         queryFn: async (): Promise<WeatherData | any> => {
           try {
             const location: string = city;
-            console.log(location);
             const result = await axios.get<WeatherData>(
               `${import.meta.env.VITE_API_URL}/api/weather/${location}`,
               {
@@ -28,10 +27,8 @@ export const useWeatherAllCities = (
                 },
               }
             );
-            console.log(result.data);
             return result.data;
           } catch (error: unknown) {
-            console.log(error);
             if (axios.isAxiosError(error)) {
               throw new Error(error.response?.data.message);
             }

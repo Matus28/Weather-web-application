@@ -15,9 +15,11 @@ const CurrentWeather = (props: {
   return (
     <Card class="current-weather">
       <div className="current-weather">
-        <CircleButton onClick={props.onAddCity}>
-          <AddIcon fontSize="large" />
-        </CircleButton>
+        <div className="current-weather__add">
+          <CircleButton onClick={props.onAddCity}>
+            <AddIcon fontSize="large" />
+          </CircleButton>
+        </div>
         <div className="current-weather-switch">
           <ControlledSwitch
             isChecked={props.isChecked}

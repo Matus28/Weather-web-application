@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  getUsers,
   loginUser,
   removeUser,
   signupUser,
@@ -14,4 +15,7 @@ router.post("/login", loginUser);
 router.post("/signup", signupUser);
 
 // Remove user route
-router.delete("/remove", removeUser);
+router.delete("/", removeUser);
+
+// Get user list (only avalible for admin)
+router.get("/", getUsers);
