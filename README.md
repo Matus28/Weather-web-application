@@ -6,12 +6,14 @@ Link to [https://weather-web-application-app.vercel.app/](https://weather-web-ap
 ## Preview
 In application before looking for weather data user needs to sign up. After sign up user is relocates to the main page.
 <br/>
+<br/>
 
 <p align="center">
 <img src="/documents/preview/SIGNUP.gif" alt="Gif of signing up to the application." width=50% height=50%>
 </p>
 <br/>
 Main page contains search bar for finding the city. User can types city manually or click the auto location button for finding city depending on the user's actual location. After finding the city user gets weather data, 7 days forecast, and air condition information. Also, a user from the Home page set the actual city to the list of user's cities or sets the city as the default city, which will be shown automatically after relocation to the Home page.
+<br/>
 <br/>
 
 <p align="center">
@@ -21,6 +23,7 @@ Main page contains search bar for finding the city. User can types city manually
 Cities page contains the user's city list, with actual weather data and short 3 days forecast.
 <br/>
 <br/>
+
 <p align="center">
 <img src="/documents/preview/CITIES.gif" alt="Gif of showing page with user's city list." width=50% height=50%>
 </p>
