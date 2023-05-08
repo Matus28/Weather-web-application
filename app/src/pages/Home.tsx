@@ -33,16 +33,7 @@ const Home = (): JSX.Element => {
   const postMutationRes = usePostCity();
 
   React.useEffect(() => {
-    console.log(data);
-  }, [data]);
-
-  React.useEffect(() => {
-    console.log(isLoading);
-  }, [isLoading]);
-
-  React.useEffect(() => {
     if (defCity && (defCity?.cityName === city || city.length === 0)) {
-      console.log(defCity);
       setCity(defCity.cityName);
       setChecked(true);
     } else {
@@ -67,6 +58,7 @@ const Home = (): JSX.Element => {
       inputCityName.value.slice(1).toLowerCase();
 
     setCity(newCity);
+    setSearchValue("");
   };
 
   const changeSearchValueHandler = (newValue: string): void => {
