@@ -38,3 +38,13 @@ jobs:
       - name: Test (api - backend)
         working-directory: ./api
         run: yarn test
+
+      - name: Install dependencies (app - frontend)
+        working-directory: ./app
+        run: yarn
+      - name: Build (app - frontend)
+        working-directory: ./app
+        run: yarn build
+      - name: Test (app - frontend)
+        working-directory: ./app
+        run: yarn test
