@@ -15,6 +15,7 @@ env:
   SECRET: ${{ secrets.SECRET }}
   MONGO_URI: ${{ secrets.MONGO_URI}}
   WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+  PORT: 4000
 
 jobs:
   test_build:
@@ -29,12 +30,15 @@ jobs:
           node-version: "18"
           cache: "yarn"
           cache-dependency-path: api/yarn.lock
+
       - name: Install dependencies (api - backend)
         working-directory: ./api
         run: yarn
+
       - name: Build (api - backend)
         working-directory: ./api
         run: yarn build
+
       - name: Test (api - backend)
         working-directory: ./api
         run: yarn test
@@ -42,9 +46,25 @@ jobs:
       - name: Install dependencies (app - frontend)
         working-directory: ./app
         run: yarn
+
       - name: Build (app - frontend)
         working-directory: ./app
         run: yarn build
+
       - name: Test (app - frontend)
         working-directory: ./app
         run: yarn test
+
+      - name: Start backend (e2e testing)
+        run: |
+          cd api
+          yarn start
+
+      - name: Start Cypress tests
+        uses: cypress-io/github-action@v2
+        with:
+          working-directory: frontend
+          wait-on: "http://localhost:4000"
+          command-prefix: "yarn"
+          start: "test:e2e:run"
+          wait-on-timeout: "120000"
