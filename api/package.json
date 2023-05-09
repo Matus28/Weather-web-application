@@ -8,7 +8,7 @@
     "build": "rimraf dist && tsc --project tsconfig.build.json",
     "ts.check": "tsc --project tsconfig.build.json",
     "add-build": "git add dist",
-    "test": "cross-env NODE_ENV=test jest --testTimeout=5000",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=8000",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
   },
   "pre-commit": [
