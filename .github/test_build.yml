@@ -1,0 +1,30 @@
+name: Build and Test
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - master
+  workflow_dispatch:
+    branches:
+      - master
+jobs:
+  test_build:
+    runs-on: ubuntu-latest
+    name: Build and Test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "yarn"
+      - name: Install dependencies (api - backend)
+        working-directory: ./api
+        run: yarn
+      - name: Build (api - backend)
+        working-directory: ./api
+        run: yarn build
+      - name: Test (api - backend)
+        working-directory: ./api
+        run: yarn test
