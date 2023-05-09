@@ -32,6 +32,7 @@
     "pre-commit": "^1.2.2",
     "rimraf": "^4.4.1",
     "supertest": "^6.3.3",
+    "ts-jest": "^29.1.0",
     "typescript": "^5.0.2"
   },
   "dependencies": {
