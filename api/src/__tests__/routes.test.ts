@@ -74,10 +74,10 @@ describe("test cities routes", () => {
       .post("/api/cities")
       .set({ Authorization: `Bearer ${auth.token}` })
       .send({ cityName: "Pezinok" })
-      .expect(200)
       .end((err: Error, res: Response) => {
         if (err) return done(err);
 
+        expect(res.statusCode).toBe(200);
         request(app)
           .get("/api/cities")
           .set({ Authorization: `Bearer ${auth.token}` })
