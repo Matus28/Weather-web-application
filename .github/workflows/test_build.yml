@@ -10,6 +10,11 @@ on:
   push:
     branches:
       - master
+
+env:
+  SECRET: ${{ secrets.SECRET }}
+  MONGO_URI: ${{ secrets.MONGO_URI}}
+
 jobs:
   test_build:
     runs-on: ubuntu-latest
@@ -23,10 +28,6 @@ jobs:
           node-version: "18"
           cache: "yarn"
           cache-dependency-path: api/yarn.lock
-      - name: Start MongoDB
-        uses: supercharge/mongodb-github-action@1.8.0
-        with:
-          mongodb-version: "4.2"
       - name: Install dependencies (api - backend)
         working-directory: ./api
         run: yarn
