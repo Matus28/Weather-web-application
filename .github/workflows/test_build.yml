@@ -67,7 +67,6 @@ jobs:
           config-file: cypress.config.ts
           record: true
           parallel: true
-          group: "UI - Chrome"
           browser: chrome
           headless: true
           working-directory: app
