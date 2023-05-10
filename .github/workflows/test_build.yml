@@ -67,6 +67,5 @@ jobs:
           config-file: cypress.config.ts
           parallel: true
           browser: chrome
-          headless: true
           working-directory: app
           run: test:e2e:run
