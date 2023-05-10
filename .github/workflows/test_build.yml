@@ -58,7 +58,8 @@ jobs:
       - name: Start backend (e2e testing)
         run: |
           cd api
-          yarn start
+          yarn start &
+          npx wait-on http://localhost:4000
 
       - name: Start Cypress tests
         uses: cypress-io/github-action@v2
