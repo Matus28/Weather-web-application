@@ -64,5 +64,6 @@ jobs:
       - name: Start Cypress tests
         uses: cypress-io/github-action@v2
         with:
+          config-file: cypress.config.ts
           working-directory: app
           run: test:e2e:run
