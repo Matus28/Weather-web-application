@@ -67,5 +67,5 @@ jobs:
           working-directory: app
           wait-on: "http://localhost:4000"
           command-prefix: "yarn"
-          start: "dev"
-          wait-on-timeout: "120000"
+          start: "start"
+          wait-on-timeout: "60000"
