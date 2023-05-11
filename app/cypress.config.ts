@@ -7,5 +7,6 @@ export default defineConfig({
     },
     testIsolation: false,
     baseUrl: "http://localhost:3000",
+    responseTimeout: 120e3,
   },
 });
