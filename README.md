@@ -40,6 +40,7 @@ Project application is splitted in to two sub-projects, frontend part (app) and 
 - React frontend library
 - Unit & Integration testing with JEST testing framework and testing libraries
 - testing e2e with Cypress
+- GitHub Actions
 - Material UI
 - Tanstack React Query library for optimized managing server state 
 - Axios
