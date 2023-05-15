@@ -16,7 +16,7 @@ env:
   MONGO_URI: ${{ secrets.MONGO_URI}}
   WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
   PORT: 4000
-  CYPRESS_RECORD_KEY: ${{ CYPRESS_RECORD_KEY }}
+  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
   VITE_API_URL: ""
 
 jobs:
