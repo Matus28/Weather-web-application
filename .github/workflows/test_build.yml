@@ -16,6 +16,8 @@ env:
   MONGO_URI: ${{ secrets.MONGO_URI}}
   WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
   PORT: 4000
+  CYPRESS_RECORD_KEY: ${{ CYPRESS_RECORD_KEY }}
+  VITE_API_URL: ""
 
 jobs:
   test_build:
@@ -56,15 +58,17 @@ jobs:
         run: yarn test
 
       - name: Start backend (e2e testing)
-        run: |
-          cd api
-          yarn start &
-          sleep 10
+        working-directory: ./api
+        run: yarn dev &
 
       - name: Start Cypress tests
         uses: cypress-io/github-action@v2
         with:
           config-file: cypress.config.ts
-          browser: chrome
           working-directory: app
-          run: test:e2e:run
+          browser: chrome
+          install: true
+          build: yarn build
+          wait-on: http://localhost:3000
+          start: npx vite --host
+          record: true
