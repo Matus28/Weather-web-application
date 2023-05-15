@@ -71,11 +71,22 @@ describe("weather app test", () => {
   });
 
   it("set actual locations with autolocation button", () => {
+    cy.visit("/", {
+      onBeforeLoad(win) {
+        const latitude = "48.148598";
+        const longitude = "17.107746";
+        cy.stub(win.navigator.geolocation, "getCurrentPosition").callsFake(
+          (cb) => {
+            return cb({ coords: { latitude, longitude } });
+          }
+        );
+      },
+    });
     cy.get(".city-name__textfield").find("button").click();
     cy.wait(2000);
     cy.get(".city-name__textfield").within(() => {
       cy.get("input").then(($inputVal) => {
-        expect($inputVal.attr("value")).to.not.equal("");
+        expect($inputVal.attr("value")).to.equal("Bratislava");
       });
       cy.get("input").clear();
       cy.get("input").then(($inputVal) => {
