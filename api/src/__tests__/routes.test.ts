@@ -18,6 +18,13 @@ interface City {
   userId: string;
 }
 
+interface User {
+  _id: string;
+  email: string;
+  password: string;
+  __v: number;
+}
+
 beforeEach(async () => {
   await mongoose.connect(process.env.MONGO_URI || "");
 });
@@ -40,16 +47,30 @@ describe("test user routes", () => {
         const tokenAdmin = res.body.token;
 
         request(app)
-          .delete("/api/user")
+          .get("/api/user")
           .set({ Authorization: `Bearer ${tokenAdmin}` })
-          .send({
-            email: "newTest@gmail.com",
-          })
-          .end((error: Error, response: Response) => {
-            if (error) done(error);
+          .end((errorGet: Error, responseGet: Response) => {
+            if (errorGet) done(errorGet);
 
-            expect(response.statusCode).toBe(200);
-            done();
+            const exist = responseGet.body.filter(
+              (user: User) => user.email === "newTest@gmail.com"
+            );
+            if (exist) {
+              request(app)
+                .delete("/api/user")
+                .set({ Authorization: `Bearer ${tokenAdmin}` })
+                .send({
+                  email: "newTest@gmail.com",
+                })
+                .end((error: Error, response: Response) => {
+                  if (error) done(error);
+
+                  expect(response.statusCode).toBe(200);
+                  done();
+                });
+            } else {
+              done();
+            }
           });
       });
   });
