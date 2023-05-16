@@ -1,6 +1,7 @@
 .sec-loading {
+  margin: 0;
   height: 80vh;
-  width: 80vw;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
