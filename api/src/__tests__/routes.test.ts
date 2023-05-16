@@ -6,9 +6,9 @@ import app from "../index";
 dotenv.config();
 
 let auth: { token: string } = { token: "" };
-let defaultCity: City;
-
 let adminToken: string = "";
+
+let defaultCity: City;
 
 interface City {
   __v: number;
