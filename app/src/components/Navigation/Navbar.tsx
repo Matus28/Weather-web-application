@@ -15,37 +15,39 @@ const Navbar = (): JSX.Element => {
   return (
     <header>
       <div className="container">
-        <div className="tabs">
-          <Link to="/">
-            <h2>Home</h2>
-          </Link>
-          {state.user && (
-            <Link to="/cities">
-              <h2>Cities</h2>
+        <div className="controls">
+          <div className="tabs">
+            <Link to="/">
+              <h2>Home</h2>
             </Link>
-          )}
-        </div>
-        <nav>
-          {!state.user && (
-            <div className="authentication">
-              <Link to="/login">
-                <h3>Login</h3>
+            {state.user && (
+              <Link to="/cities">
+                <h2>Cities</h2>
               </Link>
-              <Link to="/signup">
-                <h3>Signup</h3>
-              </Link>
-            </div>
-          )}
+            )}
+          </div>
+          <nav>
+            {!state.user && (
+              <div className="authentication">
+                <Link to="/login">
+                  <h3>Login</h3>
+                </Link>
+                <Link to="/signup">
+                  <h3>Signup</h3>
+                </Link>
+              </div>
+            )}
 
-          {state.user && (
-            <div className="authentication">
-              <span>{state.user.email}</span>
-              <Link to="/" onClick={handleClick}>
-                <h3>Log out</h3>
-              </Link>
-            </div>
-          )}
-        </nav>
+            {state.user && (
+              <div className="authentication">
+                <span>{state.user.email}</span>
+                <Link to="/" onClick={handleClick}>
+                  <h3>Log out</h3>
+                </Link>
+              </div>
+            )}
+          </nav>
+        </div>
       </div>
     </header>
   );

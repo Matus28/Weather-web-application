@@ -1,9 +1,9 @@
 import * as React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Navbar from "./components/Navigation/Navbar";
 import { useAuthContext } from "./hooks/useAuthContext";
 import "./App.css";
 import Loading from "./components/Loading/Loading";
+const Navbar = React.lazy(() => import("./components/Navigation/Navbar"));
 const Home = React.lazy(() => import("./pages/Home"));
 const Login = React.lazy(() => import("./pages/Login"));
 const Signup = React.lazy(() => import("./pages/Signup"));
@@ -15,9 +15,9 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar />
-        <div className="pages">
-          <React.Suspense fallback={<Loading />}>
+        <React.Suspense fallback={<Loading />}>
+          <Navbar />
+          <div className="pages">
             <Routes>
               <Route
                 path="/"
@@ -42,8 +42,8 @@ function App() {
                 element={userValue.user ? <Cities /> : <Navigate to="/login" />}
               />
             </Routes>
-          </React.Suspense>
-        </div>
+          </div>
+        </React.Suspense>
       </BrowserRouter>
     </div>
   );

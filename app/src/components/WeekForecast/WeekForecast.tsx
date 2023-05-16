@@ -10,7 +10,7 @@ const ForecastComponent = (props: {
   return (
     <Card class="week-forecast">
       <div className="week-forecast">
-        <div className="week-forecast__title">7 day forecast</div>
+        <div className="week-forecast__title">{`${props.forecastData.length} day forecast`}</div>
         <WeekForecastList forecastData={props.forecastData} days={7} />
       </div>
     </Card>
