@@ -142,6 +142,7 @@ describe("weather app test", () => {
         cy.get("input").type("Bratislava");
       });
     cy.contains("Add city").click();
+    cy.wait(3000);
     cy.get(".city-list")
       .should("be.visible")
       .within(() => {
