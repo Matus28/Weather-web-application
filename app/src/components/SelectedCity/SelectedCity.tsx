@@ -19,7 +19,9 @@ const CityComponent = (props: { data: WeatherData | null }): JSX.Element => {
             />
           )}
           <div className="selected-city-weather__temp">
-            {props.data && <h1>{`${props.data.current.temp_c}°C`}</h1>}
+            {props.data && (
+              <h1>{`${Math.round(props.data.current.temp_c)}°C`}</h1>
+            )}
           </div>
         </div>
         <div className="selected-city-weather__city">
