@@ -55,7 +55,7 @@ describe("test user routes", () => {
             const exist = responseGet.body.filter(
               (user: User) => user.email === "newTest@gmail.com"
             );
-            if (exist) {
+            if (exist.length > 0) {
               request(app)
                 .delete("/api/user")
                 .set({ Authorization: `Bearer ${tokenAdmin}` })
