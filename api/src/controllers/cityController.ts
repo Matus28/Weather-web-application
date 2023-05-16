@@ -56,7 +56,13 @@ export const addCity = async (req: Request, res: Response): Promise<void> => {
 
   try {
     const userId = req.user._id;
-    const exist = await City.findOne({ cityName, userId });
+    const exist = await City.findOne({
+      cityName: {
+        $regex: `^${cityName}`,
+        $options: "i",
+      },
+      userId,
+    });
     const city =
       (await isValidName) && !exist && City.create({ cityName, userId });
     res.status(200).json(city);

@@ -36,16 +36,31 @@ citySchema.static(
       throw Error("No city selected.");
     }
 
-    const exists = await this.findOne({ cityName, userId });
+    const exists = await this.findOne({
+      cityName: {
+        $regex: `^${cityName}`,
+        $options: "i",
+      },
+      userId,
+    });
 
     if (!exists) {
       await this.create({ cityName, userId });
     }
 
     await this.updateMany({ userId }, { $set: { isDefault: false } });
-
+    console.log(`is default: ${isDefault}`);
     if (isDefault) {
-      await this.updateOne({ cityName, userId }, { $set: { isDefault: true } });
+      await this.updateOne(
+        {
+          cityName: {
+            $regex: `^${cityName}`,
+            $options: "i",
+          },
+          userId,
+        },
+        { $set: { isDefault: true } }
+      );
     }
 
     const result = await this.findOne({ userId });

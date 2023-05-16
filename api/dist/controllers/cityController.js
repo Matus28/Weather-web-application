@@ -64,7 +64,13 @@ const addCity = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
     try {
         const userId = req.user._id;
-        const exist = yield cityModel_1.City.findOne({ cityName, userId });
+        const exist = yield cityModel_1.City.findOne({
+            cityName: {
+                $regex: `^${cityName}`,
+                $options: "i",
+            },
+            userId,
+        });
         const city = (yield isValidName) && !exist && cityModel_1.City.create({ cityName, userId });
         res.status(200).json(city);
     }

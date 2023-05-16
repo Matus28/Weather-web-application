@@ -36,13 +36,26 @@ exports.citySchema.static("setDefaultCity", function (cityName, userId, isDefaul
         if (!cityName) {
             throw Error("No city selected.");
         }
-        const exists = yield this.findOne({ cityName, userId });
+        const exists = yield this.findOne({
+            cityName: {
+                $regex: `^${cityName}`,
+                $options: "i",
+            },
+            userId,
+        });
         if (!exists) {
             yield this.create({ cityName, userId });
         }
         yield this.updateMany({ userId }, { $set: { isDefault: false } });
+        console.log(`is default: ${isDefault}`);
         if (isDefault) {
-            yield this.updateOne({ cityName, userId }, { $set: { isDefault: true } });
+            yield this.updateOne({
+                cityName: {
+                    $regex: `^${cityName}`,
+                    $options: "i",
+                },
+                userId,
+            }, { $set: { isDefault: true } });
         }
         const result = yield this.findOne({ userId });
         return result;
