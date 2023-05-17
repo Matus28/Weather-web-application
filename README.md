@@ -1,5 +1,5 @@
 # Weather-web-application
-Application to show actual weather and forecast for specific city. To get access to the application the basic registration is needed.
+Application to show actual weather and forecast for specific city. To get access to the application you can either use predefined user01 credentials or make the basic registration.
 After authentication user gets access to look for a specific city weather and creates own list of city he is interested in with actual weather and forecast for 3 or 7 days.<br/><br/>
 Link to [https://weather-web-application-app.vercel.app/](https://weather-web-application-app.vercel.app/)
 
