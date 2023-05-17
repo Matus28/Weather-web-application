@@ -19,11 +19,22 @@ body {
   height: 100vh;
 }
 
-.pages {
+.App {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+}
+
+.pages {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 580px;
+  height: calc(100vh - 80px);
+  width: 73vw;
 }
 
 :root {

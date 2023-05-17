@@ -20,7 +20,7 @@ const Login = (): JSX.Element => {
 
   return (
     <div className="login">
-      <Card>
+      <Card class="login">
         <form id="login-form" className="login" onSubmit={handleSubmit}>
           <h1>Login</h1>
           <label htmlFor="email">Email:</label>

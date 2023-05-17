@@ -28,7 +28,7 @@ const Signup = (): JSX.Element => {
 
   return (
     <div className="signup">
-      <Card>
+      <Card class="signup">
         <form id="signup-form" className="signup" onSubmit={handleSubmit}>
           <h1>Sign up</h1>
           <label htmlFor="email">Email:</label>
