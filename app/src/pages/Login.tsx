@@ -8,8 +8,8 @@ import { useLogin } from "../hooks/useLogin";
 import "./Login.css";
 
 const Login = (): JSX.Element => {
-  const [email, setEmail] = React.useState<string>("");
-  const [password, setPassword] = React.useState<string>("");
+  const [email, setEmail] = React.useState<string>("user01@gmail.com");
+  const [password, setPassword] = React.useState<string>("ABCabc123!");
   const { error, isLoading, mutateAsync: login } = useLogin();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
