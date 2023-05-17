@@ -51,7 +51,9 @@ Cypress.config("defaultCommandTimeout", 7000);
 
 Cypress.Commands.add("login", (username: string, password: string) => {
   cy.visit("http://localhost:3000/login");
+  cy.get('input[name="email"]').clear();
   cy.get('input[name="email"]').type(username);
+  cy.get('input[name="password"]').clear();
   cy.get('input[name="password"]').type(password);
   cy.findByText("Submit").click();
 });
