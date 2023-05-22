@@ -6,29 +6,35 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 interface Page {
   text: string;
   path: string;
+  isPrivate: boolean;
 }
 
 const pages: Page[] = [
   {
     text: "Home",
     path: "/",
+    isPrivate: false,
   },
   {
     text: "Cities",
     path: "/cities",
+    isPrivate: true,
   },
 ];
 
-export default function DrawerMenu() {
+export default function DrawerMenu(props: { isAuthenticated: boolean }) {
   const [state, setState] = React.useState(false);
+
+  const pagesToRender = pages.filter(
+    (page: Page) => !page.isPrivate || (page.isPrivate && props.isAuthenticated)
+  );
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -49,7 +55,7 @@ export default function DrawerMenu() {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        {pages.map((page: Page, index) => (
+        {pagesToRender.map((page: Page, index) => (
           <ListItem key={index} disablePadding>
             <ListItemButton onClick={() => setState(false)}>
               <ListItemIcon>
@@ -64,7 +70,7 @@ export default function DrawerMenu() {
   );
 
   return (
-    <div>
+    <div className="drawer-menu">
       <Button onClick={toggleDrawer(true)}>
         <MenuIcon style={{ color: "#FFFFFF" }} />
       </Button>
