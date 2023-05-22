@@ -11,9 +11,9 @@ import DrawerMenu from "../DrawerMenu/DrawerMenu";
 import { Link } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import "./MenuAppBar.css";
 import { getUsername } from "../../utils/getUsername";
 import { TitleContext } from "../../context/TitleContext";
+import "./MenuAppBar.css";
 
 export default function MenuAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -41,20 +41,19 @@ export default function MenuAppBar() {
       style={{ background: "#090b0c91", width: "104vw" }}
     >
       <Toolbar>
-        <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
+        <DrawerMenu isAuthenticated={state.user !== null} />
+        <Typography
+          className="page-title"
+          variant="h6"
+          component="div"
+          sx={{ flexGrow: 1 }}
         >
-          <DrawerMenu />
-        </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {contextTitle?.title}
         </Typography>
         <div className="user-button">
-          {state.user && <div>{getUsername(state.user.email)}</div>}
+          {state.user && (
+            <div className="username">{getUsername(state.user.email)}</div>
+          )}
           <IconButton
             size={state.user ? "small" : "large"}
             aria-label="account of current user"
