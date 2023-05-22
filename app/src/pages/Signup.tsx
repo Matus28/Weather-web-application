@@ -4,6 +4,7 @@ import { Card } from "../components/Card/Card";
 import { CustomizedTextField } from "../components/Input/CustomizedTextField";
 import { PasswordTextField } from "../components/Input/PasswordTextField";
 import { useSignup } from "../hooks/useSignup";
+import { useTitleContext } from "../context/TitleContext";
 
 import "./Signup.css";
 
@@ -13,6 +14,12 @@ const Signup = (): JSX.Element => {
   const [confirmPassword, setConfirmPassword] = React.useState<string>("");
   const [isNotSame, setIsNotSame] = React.useState<boolean | null>(null);
   const { data, error, isLoading, mutateAsync: signup } = useSignup();
+
+  const contextTitle = useTitleContext();
+
+  React.useEffect(() => {
+    contextTitle?.setTitle("Signup");
+  }, []);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
