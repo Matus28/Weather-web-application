@@ -1,6 +1,6 @@
 .card-body.selected-city {
   position: relative;
-  width: 380px;
+  max-width: 370px;
   min-height: 90px;
   cursor: pointer;
 }
@@ -20,4 +20,16 @@
 
 .selected-city-weather__main > img {
   width: 200px;
+}
+
+@media (max-width: 400px) {
+  .selected-city-weather__main {
+    flex-flow: column;
+  }
+  .selected-city-weather__temp {
+    position: static;
+  }
+  .selected-city-weather__temp h1 {
+    margin: 0.1rem;
+  }
 }

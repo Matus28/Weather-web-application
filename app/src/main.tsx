@@ -5,6 +5,7 @@ import App from "./App";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AuthContextProvider } from "./context/AuthContext";
+import { TitleProvider } from "./context/TitleContext";
 
 const queryClient: QueryClient = new QueryClient();
 
@@ -12,10 +13,12 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <AuthContextProvider>
       <QueryClientProvider client={queryClient}>
-        <SnackBarContextProvider>
-          <App />
-        </SnackBarContextProvider>
-        {import.meta.env.DEV && <ReactQueryDevtools />}
+        <TitleProvider>
+          <SnackBarContextProvider>
+            <App />
+          </SnackBarContextProvider>
+          {import.meta.env.DEV && <ReactQueryDevtools />}
+        </TitleProvider>
       </QueryClientProvider>
     </AuthContextProvider>
   </React.StrictMode>

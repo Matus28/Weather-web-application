@@ -9,7 +9,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 400px;
 }
 
 .current-weather button {
@@ -51,4 +50,13 @@
 
 .current-weather__condition h2 {
   letter-spacing: 1px;
+}
+
+@media (max-width: 590px) {
+  .card-body.current-weather {
+    height: auto;
+  }
+  .current-weather-switch p {
+    display: none;
+  }
 }

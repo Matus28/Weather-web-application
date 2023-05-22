@@ -66,7 +66,7 @@ export function PasswordTextField(props: {
 
   return (
     <ThemeProvider theme={theme}>
-      <div>
+      <div className="password-input">
         <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
           <OutlinedInput
             id="outlined-adornment-password"

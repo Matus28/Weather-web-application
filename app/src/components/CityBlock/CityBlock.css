@@ -1,6 +1,5 @@
 .card-body.city {
-  width: 370px;
-  max-width: 380px;
+  max-width: 370px;
   min-height: 90px;
   cursor: pointer;
 }
@@ -14,7 +13,6 @@
   justify-content: flex start;
   align-items: center;
   gap: 5px;
-  min-width: 300px;
   position: relative;
 }
 
@@ -47,4 +45,30 @@
 
 .card-body.city:hover {
   box-shadow: 0px 0px 15px 9px rgba(0, 0, 0, 0.75);
+}
+
+@media (max-width: 400px) {
+  .city-list {
+    width: 100%;
+  }
+  .card-body.city {
+    width: 100%;
+  }
+  .city-block {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .city-block-description {
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 1;
+  }
+  .city-block > img {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+  }
+  .city-block-temp {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+  }
 }

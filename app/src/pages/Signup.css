@@ -7,8 +7,8 @@
 }
 
 .card-body.signup {
-  height: 550px;
-  width: 320px;
+  height: 530px;
+  max-width: 315px;
 }
 
 form.signup {
@@ -27,10 +27,20 @@ form.signup {
   text-align: center;
 }
 
+.terms-and-conditions a {
+  text-decoration: none;
+  font-weight: 800;
+  color: white;
+}
+
 .signup label {
   margin-top: 10px;
 }
 
-.signup button {
+.signup > button {
+  margin: 15px 0 0;
+}
+
+.password-input button {
   margin: 15px 0;
 }
