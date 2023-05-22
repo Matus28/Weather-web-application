@@ -34,7 +34,8 @@ body {
   align-items: center;
   min-height: 580px;
   height: calc(100vh - 80px);
-  width: 80vw;
+  width: 100vw;
+  padding: 0 1.5rem;
 }
 
 :root {
