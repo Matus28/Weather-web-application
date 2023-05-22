@@ -1,6 +1,7 @@
 import * as React from "react";
 import { selectImage } from "../../utils/selectImage";
 import { WeatherCondition } from "../../utils/types";
+import "./WeatherImage.css";
 
 interface WeatherImageProps {
   data: WeatherCondition;
