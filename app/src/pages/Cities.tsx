@@ -10,6 +10,7 @@ import { useCities } from "../hooks/useCities";
 import { usePostCity } from "../hooks/usePostCity";
 import { useWeatherAllCities } from "../hooks/useWeatherAllCities";
 import { WeatherData } from "../utils/types";
+import { useTitleContext } from "../context/TitleContext";
 import "./Cities.css";
 
 const Cities = (): JSX.Element => {
@@ -26,6 +27,12 @@ const Cities = (): JSX.Element => {
   const allLoaded = weatherData.every((query) => !query.isLoading);
 
   const postMutationRes = usePostCity();
+
+  const contextTitle = useTitleContext();
+
+  React.useEffect(() => {
+    contextTitle?.setTitle("Cities");
+  }, []);
 
   React.useEffect(() => {
     if (weatherData.length > 0) {
@@ -85,7 +92,7 @@ const Cities = (): JSX.Element => {
           onChangeValue={changeSearchValueHandler}
         />
         <BlueStyledButton variant="text" type="submit" form="my-cities-form">
-          Add city
+          Add
         </BlueStyledButton>
       </form>
       <div className="city-weather-container">

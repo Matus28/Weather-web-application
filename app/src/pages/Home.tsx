@@ -13,6 +13,7 @@ import { useDefaultCity } from "../hooks/useDefaultCity";
 import { usePostCity } from "../hooks/usePostCity";
 import Loading from "../components/Loading/Loading";
 import "./Home.css";
+import { useTitleContext } from "../context/TitleContext";
 
 const Home = (): JSX.Element => {
   const [city, setCity] = React.useState<string>("");
@@ -29,8 +30,14 @@ const Home = (): JSX.Element => {
   );
   const { data, isLoading, isFetching, error } = useWeather(city, userValue);
 
+  const contextTitle = useTitleContext();
+
   const putMutationRes = usePutDefaultCity();
   const postMutationRes = usePostCity();
+
+  React.useEffect(() => {
+    contextTitle?.setTitle("Home");
+  }, []);
 
   React.useEffect(() => {
     if (defCity && (defCity?.cityName === city || city.length === 0)) {
