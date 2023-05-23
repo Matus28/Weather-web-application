@@ -8,15 +8,6 @@ import {
 import DrawerMenu from "../DrawerMenu/DrawerMenu";
 import { BrowserRouter } from "react-router-dom";
 
-// jest.mock("../DrawerMenu/DrawerMenu", () => {
-//   const originalModule = jest.requireActual("../DrawerMenu/DrawerMenu");
-//   return {
-//     __esModule: true,
-//     ...originalModule,
-//     toggleDrawer: jest.fn(),
-//   };
-// });
-
 afterEach(cleanup);
 
 describe("DrawerMenu component test", () => {
