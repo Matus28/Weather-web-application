@@ -32,9 +32,9 @@ Weather application adapts to the device's layout (responsive design), so it can
 <br/>
 <br/>
 
-<p align="center">
+<!-- <p align="center">
 <img src="/documents/preview/MobileVersion.gif" alt="Gif of showing page with user's city list." width=20% height=20%>
-</p>
+</p> -->
 
 ## Project structure
 Project application is splitted in to two sub-projects, frontend part (app) and backend part (api).
