@@ -2,11 +2,13 @@ import axios from "axios";
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { WeatherData } from "../utils/types";
 import { UserState } from "../context/AuthContext";
+import { useSnackBar } from "../context/SnackbarContext";
 
 export const useWeather = (
   city: string,
   userValue: UserState
 ): UseQueryResult<WeatherData, Error> => {
+  const { showSnackBar } = useSnackBar();
   return useQuery({
     queryKey: ["weather", city],
     queryFn: async (): Promise<WeatherData | unknown> => {
@@ -26,6 +28,7 @@ export const useWeather = (
         return result.data;
       } catch (error: unknown) {
         console.log(error);
+        showSnackBar("Forecast not avalible!", "error");
         if (axios.isAxiosError(error)) {
           throw new Error(error.response?.data.message);
         }

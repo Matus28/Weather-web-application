@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { UserActionType } from "../context/AuthContext";
 import { useAuthContext } from "./useAuthContext";
+import { useSnackBar } from "../context/SnackbarContext";
 
 export interface FetchUser {
   email: string;
@@ -15,6 +16,7 @@ export interface FetchData {
 }
 
 export const useSignup = () => {
+  const { showSnackBar } = useSnackBar();
   const { dispatch } = useAuthContext();
   return useMutation({
     mutationFn: async (value: FetchData) => {
@@ -40,12 +42,13 @@ export const useSignup = () => {
     },
     onError: (error: Error) => {
       console.log(error);
+      showSnackBar("Account could not be created!", "error");
     },
     onSuccess: (data) => {
       if (data) {
         localStorage.setItem("user", JSON.stringify(data));
         dispatch({ type: UserActionType.LOGIN, payload: data });
-        console.log("Success !!!");
+        showSnackBar("Account created.", "info");
       }
     },
   });

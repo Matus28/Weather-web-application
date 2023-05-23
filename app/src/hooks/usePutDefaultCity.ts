@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { UserState } from "../context/AuthContext";
+import { useSnackBar } from "../context/SnackbarContext";
 
 interface CityData {
   cityName: string;
@@ -9,6 +10,7 @@ interface CityData {
 }
 
 export const usePutDefaultCity = () => {
+  const { showSnackBar } = useSnackBar();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (value: CityData) => {
@@ -30,9 +32,10 @@ export const usePutDefaultCity = () => {
     },
     onError: (error: Error) => {
       console.log(error);
+      showSnackBar("Default city could not be set!", "error");
     },
     onSuccess: () => {
-      console.log("Success !!!");
+      showSnackBar("Default city successfully changed.", "success");
       queryClient.invalidateQueries(["default-city"]);
     },
   });

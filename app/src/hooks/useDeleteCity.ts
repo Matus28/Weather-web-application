@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { UserState } from "../context/AuthContext";
+import { useSnackBar } from "../context/SnackbarContext";
 
 interface CityData {
   _id: string;
@@ -9,6 +10,7 @@ interface CityData {
 }
 
 export const useDeleteCity = () => {
+  const { showSnackBar } = useSnackBar();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (value: CityData) => {
@@ -29,9 +31,10 @@ export const useDeleteCity = () => {
     },
     onError: (error: Error) => {
       console.log(error);
+      showSnackBar("City could not be deleted.", "error");
     },
     onSuccess: () => {
-      console.log("Success !!!");
+      showSnackBar("City successfully deleted.", "success");
       queryClient.invalidateQueries(["cities"]);
     },
   });
