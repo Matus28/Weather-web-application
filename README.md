@@ -28,7 +28,7 @@ Cities page contains the user's city list, with actual weather data and short 3 
 <img src="/documents/preview/CITIES.gif" alt="Gif of showing page with user's city list." width=50% height=50%>
 </p>
 <br/>
-Weather application adapts to the device's layout (responsive design), so it can be watched by mobile devices.
+Weather application adapts to the device's layout (responsive design), so it can be watched by mobile devices. Application has Snackbar to inform user about end of process (successfull, error, inform).
 <br/>
 <br/>
 
