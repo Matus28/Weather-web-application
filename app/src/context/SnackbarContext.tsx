@@ -41,8 +41,8 @@ const SnackBarContextProvider: React.FC<SnackBarContextProviderProps> = ({
     <SnackBarContext.Provider value={{ showSnackBar }}>
       <Snackbar
         open={open}
-        autoHideDuration={6000}
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        autoHideDuration={5000}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         onClose={handleClose}
       >
         <Alert
