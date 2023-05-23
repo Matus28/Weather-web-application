@@ -13,7 +13,6 @@ export const useLogout = () => {
       type: UserActionType.LOGOUT,
       payload: { email: "", token: "" },
     });
-    // HERE WILL COME DATA ABOUT MY CITIES...
   };
 
   return { logout };
