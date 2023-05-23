@@ -18,16 +18,13 @@ const Cities = (): JSX.Element => {
   const [selectedCity, setSelectedCity] = React.useState<WeatherData | null>(
     null
   );
-
   const { state: userValue } = useAuthContext();
   const { showSnackBar } = useSnackBar();
-
   const { data: cities, isLoading, isError } = useCities(userValue);
   const [...weatherData] = useWeatherAllCities(cities, userValue);
   const allLoaded = weatherData.every((query) => !query.isLoading);
 
   const postMutationRes = usePostCity();
-
   const contextTitle = useTitleContext();
 
   React.useEffect(() => {
@@ -42,21 +39,12 @@ const Cities = (): JSX.Element => {
 
       for (const data of weatherData) {
         if (data.error instanceof Error) {
-          showSnackBar(data.error.message, "error");
+          showSnackBar("Connection lost.", "error");
           break;
         }
       }
     }
   }, [weatherData]);
-
-  // React.useEffect(() => {
-  //   if (citiesData.error) {
-  //     showSnackBar("Cities not found!", "error");
-  //   }
-  //   if (weatherData[0].error) {
-  //     showSnackBar("Weather data not found", "error");
-  //   }
-  // }, [citiesData.error || weatherData[0].error]);
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
