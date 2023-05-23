@@ -38,7 +38,7 @@ export default function MenuAppBar() {
   return (
     <AppBar
       position="static"
-      style={{ background: "#090b0c91", width: "104vw" }}
+      style={{ background: "#090b0c91", width: "100vw" }}
     >
       <Toolbar>
         <DrawerMenu isAuthenticated={state.user !== null} />
