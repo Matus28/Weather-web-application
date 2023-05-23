@@ -84,7 +84,7 @@ export default function DrawerMenu(props: { isAuthenticated: boolean }) {
             width: "220px",
             color: "#FFFFFF",
             height: "200px",
-            top: "60px",
+            top: "57px",
           },
         }}
       >
