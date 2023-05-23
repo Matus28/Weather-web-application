@@ -3,11 +3,13 @@ import { useQueries, useQuery, UseQueryResult } from "@tanstack/react-query";
 import { City, WeatherData } from "../utils/types";
 import { UserState } from "../context/AuthContext";
 import { extractName } from "../utils/extractName";
+import { useSnackBar } from "../context/SnackbarContext";
 
 export const useWeatherAllCities = (
   cities: City[] | undefined,
   userValue: UserState
 ): UseQueryResult<WeatherData, unknown>[] => {
+  const { showSnackBar } = useSnackBar();
   const citiesName = extractName(cities);
   return useQueries({
     queries: citiesName.map((city: string) => {
@@ -29,6 +31,8 @@ export const useWeatherAllCities = (
             );
             return result.data;
           } catch (error: unknown) {
+            console.log(error);
+            showSnackBar("Forecast data could not be retrieved!", "error");
             if (axios.isAxiosError(error)) {
               throw new Error(error.response?.data.message);
             }

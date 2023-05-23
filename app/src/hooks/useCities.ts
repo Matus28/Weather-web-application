@@ -6,11 +6,13 @@ import {
 } from "@tanstack/react-query";
 import { UserState } from "../context/AuthContext";
 import { City } from "../utils/types";
+import { useSnackBar } from "../context/SnackbarContext";
 
 export const useCities = (
   userValue: UserState
 ): UseQueryResult<City[], Error> => {
   const queryClient = useQueryClient();
+  const { showSnackBar } = useSnackBar();
   return useQuery({
     queryKey: ["cities", userValue],
     queryFn: async (): Promise<City[] | unknown> => {
@@ -29,6 +31,7 @@ export const useCities = (
         return result.data;
       } catch (error: unknown) {
         console.log(error);
+        showSnackBar("City list could not be retrieved!", "error");
         if (axios.isAxiosError(error)) {
           throw new Error(error.response?.data.message);
         }

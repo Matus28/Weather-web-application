@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { UserActionType } from "../context/AuthContext";
 import { useAuthContext } from "./useAuthContext";
+import { useSnackBar } from "../context/SnackbarContext";
 
 export interface FetchUser {
   email: string;
@@ -15,6 +16,7 @@ export interface FetchData {
 }
 
 export const useLogin = () => {
+  const { showSnackBar } = useSnackBar();
   const { dispatch } = useAuthContext();
   return useMutation({
     mutationFn: async (value: FetchData) => {
@@ -40,8 +42,10 @@ export const useLogin = () => {
     },
     onError: (error: Error) => {
       console.log(error);
+      showSnackBar("Login failed!", "error");
     },
     onSuccess: (data) => {
+      showSnackBar("You are now logged in.", "info");
       if (data) {
         localStorage.setItem("user", JSON.stringify(data));
         dispatch({ type: UserActionType.LOGIN, payload: data });

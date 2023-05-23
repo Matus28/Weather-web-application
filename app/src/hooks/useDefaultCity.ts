@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-query";
 import { UserState } from "../context/AuthContext";
 import { City } from "../utils/types";
+import { useSnackBar } from "../context/SnackbarContext";
 
 export const useDefaultCity = (
   checked: boolean | null,
@@ -27,7 +28,6 @@ export const useDefaultCity = (
             },
           }
         );
-        // console.log(result);
         return result.data;
       } catch (error: unknown) {
         console.log(error);
