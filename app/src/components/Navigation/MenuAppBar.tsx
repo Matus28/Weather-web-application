@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { getUsername } from "../../utils/getUsername";
-import { TitleContext } from "../../context/TitleContext";
+import { useTitleContext } from "../../context/TitleContext";
 import "./MenuAppBar.css";
 
 export default function MenuAppBar() {
@@ -20,7 +20,7 @@ export default function MenuAppBar() {
   const { logout } = useLogout();
   const { state } = useAuthContext();
 
-  const contextTitle = React.useContext(TitleContext);
+  const contextTitle = useTitleContext();
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
