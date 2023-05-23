@@ -27,6 +27,14 @@ Cities page contains the user's city list, with actual weather data and short 3 
 <p align="center">
 <img src="/documents/preview/CITIES.gif" alt="Gif of showing page with user's city list." width=50% height=50%>
 </p>
+<br/>
+Weather application adapts to the device's layout (responsive design), so it can be watched by mobile devices.
+<br/>
+<br/>
+
+<p align="center">
+<img src="/documents/preview/MobileVersion.gif" alt="Gif of showing page with user's city list." width=20% height=20%>
+</p>
 
 ## Project structure
 Project application is splitted in to two sub-projects, frontend part (app) and backend part (api).
