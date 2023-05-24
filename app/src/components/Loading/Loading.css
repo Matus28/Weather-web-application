@@ -17,7 +17,7 @@
   animation: move 0.5s linear infinite alternate-reverse;
 }
 .sec-loading .one::before {
-  content: "";
+  content: '';
   position: absolute;
   height: 55%;
   width: 55%;
