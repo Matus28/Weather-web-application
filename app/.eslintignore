@@ -1,0 +1,3 @@
+src/vite-env.d.ts
+src/utils/types.ts
+src/mockdata/data.ts
