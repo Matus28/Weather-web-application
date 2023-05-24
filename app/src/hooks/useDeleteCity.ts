@@ -1,17 +1,17 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { UserState } from "../context/AuthContext";
-import { useSnackBar } from "../context/SnackbarContext";
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import axios from 'axios'
+import { UserState } from '../context/AuthContext'
+import { useSnackBar } from '../context/SnackbarContext'
 
 interface CityData {
-  _id: string;
-  cityName: string;
-  userValue: UserState;
+  _id: string
+  cityName: string
+  userValue: UserState
 }
 
 export const useDeleteCity = () => {
-  const { showSnackBar } = useSnackBar();
-  const queryClient = useQueryClient();
+  const { showSnackBar } = useSnackBar()
+  const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (value: CityData) => {
       try {
@@ -22,20 +22,28 @@ export const useDeleteCity = () => {
               Authorization: `Bearer ${value.userValue.user?.token}`,
             },
             validateStatus(status) {
-              return status === 200;
+              return status === 200
             },
-          }
-        );
-        return data;
-      } catch (error: unknown) {}
+          },
+        )
+        return data
+      } catch (error: unknown) {
+        console.log(error)
+        if (axios.isAxiosError(error)) {
+          throw new Error(error.response?.data.message)
+        }
+        if (error instanceof Error) {
+          throw new Error('Something went wrong')
+        }
+      }
     },
     onError: (error: Error) => {
-      console.log(error);
-      showSnackBar("City could not be deleted.", "error");
+      console.log(error)
+      showSnackBar('City could not be deleted.', 'error')
     },
     onSuccess: () => {
-      showSnackBar("City successfully deleted.", "success");
-      queryClient.invalidateQueries(["cities"]);
+      showSnackBar('City successfully deleted.', 'success')
+      queryClient.invalidateQueries(['cities'])
     },
-  });
-};
+  })
+}

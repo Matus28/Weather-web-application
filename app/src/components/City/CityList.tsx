@@ -1,33 +1,33 @@
-import { City, WeatherData } from "../../utils/types";
-import CityBlock from "../CityBlock/CityBlock";
-import { useDeleteCity } from "../../hooks/useDeleteCity";
-import "./CityList.css";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import { City, WeatherData } from '../../utils/types'
+import CityBlock from '../CityBlock/CityBlock'
+import { useDeleteCity } from '../../hooks/useDeleteCity'
+import { useAuthContext } from '../../hooks/useAuthContext'
+import './CityList.css'
 
 export const CityList = (props: {
-  cities: City[];
-  weatherData: WeatherData[];
-  selected?: string;
-  onSelect: (data: WeatherData) => void;
+  cities: City[]
+  weatherData: WeatherData[]
+  selected?: string
+  onSelect: (data: WeatherData) => void
 }): JSX.Element => {
-  const { state: userValue } = useAuthContext();
+  const { state: userValue } = useAuthContext()
 
-  const deleteMutationRes = useDeleteCity();
+  const deleteMutationRes = useDeleteCity()
 
   const handleRemoveCity = (cityId: string, cityName: string): void => {
     if (cityName === props.selected) {
-      props.onSelect(props.weatherData[0]);
+      props.onSelect(props.weatherData[0])
     }
 
     deleteMutationRes.mutateAsync({
       _id: cityId,
       cityName: cityName,
       userValue: userValue,
-    });
-  };
+    })
+  }
 
   return (
-    <div className="city-list">
+    <div className='city-list'>
       {props.weatherData &&
         props.weatherData.map((element: WeatherData, index: number) => {
           return (
@@ -35,9 +35,7 @@ export const CityList = (props: {
               key={index}
               city={
                 props.cities.filter((city: City) =>
-                  element.location.name
-                    .toLowerCase()
-                    .includes(city.cityName.toLowerCase())
+                  element.location.name.toLowerCase().includes(city.cityName.toLowerCase()),
                 )[0]
               }
               data={element}
@@ -45,8 +43,8 @@ export const CityList = (props: {
               onSelect={props.onSelect}
               onRemove={handleRemoveCity}
             />
-          );
+          )
         })}
     </div>
-  );
-};
+  )
+}
