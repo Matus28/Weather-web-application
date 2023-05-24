@@ -1,107 +1,98 @@
-import * as React from "react";
-import { BlueStyledButton } from "../components/Button/CustomizedButton";
-import { SearchCityInput } from "../components/Input/SearchCityInput";
-import { useWeather } from "../hooks/useWeather";
-import { useSnackBar } from "../context/SnackbarContext";
-import CurrentWeather from "../components/CurrentWeather/CurrentWeather";
-import { WeekForecast } from "../components/WeekForecast/WeekForecast";
-import { TodayForecast } from "../components/TodayForecast/TodayForecast";
-import { AirCondition } from "../components/AirCondition/AirCondition";
-import { useAuthContext } from "../hooks/useAuthContext";
-import { usePutDefaultCity } from "../hooks/usePutDefaultCity";
-import { useDefaultCity } from "../hooks/useDefaultCity";
-import { usePostCity } from "../hooks/usePostCity";
-import Loading from "../components/Loading/Loading";
-import "./Home.css";
-import { useTitleContext } from "../context/TitleContext";
+import * as React from 'react'
+import { BlueStyledButton } from '../components/Button/CustomizedButton'
+import { SearchCityInput } from '../components/Input/SearchCityInput'
+import { useWeather } from '../hooks/useWeather'
+import { useSnackBar } from '../context/SnackbarContext'
+import CurrentWeather from '../components/CurrentWeather/CurrentWeather'
+import { WeekForecast } from '../components/WeekForecast/WeekForecast'
+import { TodayForecast } from '../components/TodayForecast/TodayForecast'
+import { AirCondition } from '../components/AirCondition/AirCondition'
+import { useAuthContext } from '../hooks/useAuthContext'
+import { usePutDefaultCity } from '../hooks/usePutDefaultCity'
+import { useDefaultCity } from '../hooks/useDefaultCity'
+import { usePostCity } from '../hooks/usePostCity'
+import Loading from '../components/Loading/Loading'
+import './Home.css'
+import { useTitleContext } from '../context/TitleContext'
 
 const Home = (): JSX.Element => {
-  const [city, setCity] = React.useState<string>("");
-  const [searchValue, setSearchValue] = React.useState<string>("");
+  const [city, setCity] = React.useState<string>('')
+  const [searchValue, setSearchValue] = React.useState<string>('')
 
-  const [checked, setChecked] = React.useState<boolean | null>(null);
+  const [checked, setChecked] = React.useState<boolean | null>(null)
 
-  const { state: userValue } = useAuthContext();
-  const { showSnackBar } = useSnackBar();
+  const { state: userValue } = useAuthContext()
+  const { showSnackBar } = useSnackBar()
 
-  const { data: defCity, error: errorDefCity } = useDefaultCity(
-    checked,
-    userValue
-  );
-  const { data, isLoading, isFetching, error } = useWeather(city, userValue);
+  const { data: defCity } = useDefaultCity(checked, userValue)
+  const { data, isFetching, error } = useWeather(city, userValue)
 
-  const contextTitle = useTitleContext();
+  const contextTitle = useTitleContext()
 
-  const putMutationRes = usePutDefaultCity();
-  const postMutationRes = usePostCity();
+  const putMutationRes = usePutDefaultCity()
+  const postMutationRes = usePostCity()
 
   React.useEffect(() => {
-    contextTitle?.setTitle("Home");
-  }, []);
+    contextTitle?.setTitle('Home')
+  }, [])
 
   React.useEffect(() => {
     if (defCity && (defCity?.cityName === city || city.length === 0)) {
-      setCity(defCity.cityName);
-      setChecked(true);
+      setCity(defCity.cityName)
+      setChecked(true)
     } else {
-      setChecked(false);
+      setChecked(false)
     }
-  }, [defCity, city]);
+  }, [defCity, city])
 
   React.useEffect(() => {
     if (error) {
-      showSnackBar("Data for location not found!", "error");
+      showSnackBar('Data for location not found!', 'error')
     }
-  }, [error]);
+  }, [error])
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-    const inputCityName = e.currentTarget.elements.namedItem(
-      "city-name"
-    ) as HTMLInputElement;
+    e.preventDefault()
+    const inputCityName = e.currentTarget.elements.namedItem('city-name') as HTMLInputElement
 
     const newCity =
-      inputCityName.value.charAt(0).toUpperCase() +
-      inputCityName.value.slice(1).toLowerCase();
+      inputCityName.value.charAt(0).toUpperCase() + inputCityName.value.slice(1).toLowerCase()
 
-    setCity(newCity);
-    setSearchValue("");
-  };
+    setCity(newCity)
+    setSearchValue('')
+  }
 
   const changeSearchValueHandler = (newValue: string): void => {
-    setSearchValue(newValue);
-  };
+    setSearchValue(newValue)
+  }
 
   const handleCheckDefault = async (value: boolean): Promise<void> => {
-    setChecked(value);
+    setChecked(value)
 
     await putMutationRes.mutateAsync({
       cityName: city,
       userValue: userValue,
       isDefault: value,
-    });
-  };
+    })
+  }
 
   const handleAddCity = (): void => {
     postMutationRes.mutateAsync({
       cityName: city,
       userValue: userValue,
-    });
-  };
+    })
+  }
 
   return (
-    <div className="main-container">
-      <form id="city-form" onSubmit={onSubmitHandler}>
-        <SearchCityInput
-          value={searchValue}
-          onChangeValue={changeSearchValueHandler}
-        />
-        <BlueStyledButton variant="text" type="submit" form="city-form">
+    <div className='main-container'>
+      <form id='city-form' onSubmit={onSubmitHandler}>
+        <SearchCityInput value={searchValue} onChangeValue={changeSearchValueHandler} />
+        <BlueStyledButton variant='text' type='submit' form='city-form'>
           Find
         </BlueStyledButton>
       </form>
-      <div className="weather-cards">
-        <div className="weather-cards-main">
+      <div className='weather-cards'>
+        <div className='weather-cards-main'>
           {isFetching && <Loading />}
           {data && (
             <CurrentWeather
@@ -117,7 +108,7 @@ const Home = (): JSX.Element => {
         {data && <AirCondition weatherData={data} />}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
