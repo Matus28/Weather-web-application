@@ -9,7 +9,7 @@ In application before looking for weather data user needs to sign up. After sign
 <br/>
 
 <p align="center">
-<img src="/documents/preview/SIGNUP.gif" alt="Gif of signing up to the application." width=50% height=50%>
+<img src="/documents/preview/SIGNUP-preview.gif" alt="Gif of signing up to the application." width=50% height=50%>
 </p>
 <br/>
 Main page contains search bar for finding the city. User can types city manually or click the auto location button for finding city depending on the user's actual location. After finding the city user gets weather data, 7 days forecast, and air condition information. Also, a user from the Home page set the actual city to the list of user's cities or sets the city as the default city, which will be shown automatically after relocation to the Home page.
@@ -17,7 +17,7 @@ Main page contains search bar for finding the city. User can types city manually
 <br/>
 
 <p align="center">
-<img src="/documents/preview/FIND.gif" alt="Gif of showing finding weather for specific city." width=50% height=50%>
+<img src="/documents/preview/FIND-preview.gif" alt="Gif of showing finding weather for specific city." width=50% height=50%>
 </p>
 <br/>
 Cities page contains the user's city list, with actual weather data and short 3 days forecast.
@@ -25,7 +25,7 @@ Cities page contains the user's city list, with actual weather data and short 3 
 <br/>
 
 <p align="center">
-<img src="/documents/preview/CITIES.gif" alt="Gif of showing page with user's city list." width=50% height=50%>
+<img src="/documents/preview/CITIES-preview.gif" alt="Gif of showing page with user's city list." width=50% height=50%>
 </p>
 <br/>
 Weather application adapts to the device's layout (responsive design), so it can be watched by mobile devices. Application has Snackbar to inform user about end of process (successfull, error, inform).
