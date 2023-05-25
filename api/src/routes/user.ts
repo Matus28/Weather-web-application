@@ -1,21 +1,16 @@
-import express from "express";
-import {
-  getUsers,
-  loginUser,
-  removeUser,
-  signupUser,
-} from "../controllers/userController";
+import express from 'express'
+import { getUsers, loginUser, removeUser, signupUser } from '../controllers/userController'
 
-export const router = express.Router();
+export const router = express.Router()
 
 // Login route
-router.post("/login", loginUser);
+router.post('/login', loginUser)
 
 // Signup route
-router.post("/signup", signupUser);
+router.post('/signup', signupUser)
 
 // Remove user route
-router.delete("/", removeUser);
+router.delete('/', removeUser)
 
 // Get user list (only avalible for admin)
-router.get("/", getUsers);
+router.get('/', getUsers)
