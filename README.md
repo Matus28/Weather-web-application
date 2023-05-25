@@ -53,7 +53,8 @@ Project application is splitted in to two sub-projects, frontend part (app) and 
 - Tanstack React Query library for optimized managing server state 
 - Axios
 - Vite
-- Yarn package manager
+- Yarn package manage
+- ESLint and Prettier
 
 ## Instalation
 After cloning the repository proceed in these steps:
