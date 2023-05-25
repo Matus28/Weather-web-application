@@ -1,4 +1,4 @@
-name: Build and Test
+name: Lint, Build and Test
 on:
   pull_request:
     types: [opened, synchronize, reopened]
@@ -37,6 +37,14 @@ jobs:
         working-directory: ./api
         run: yarn
 
+      - name: Prettier (api - backend)
+        working-directory: ./api
+        run: yarn format
+
+      - name: Lint (api - backend)
+        working-directory: ./api
+        run: yarn lint
+
       - name: Build (api - backend)
         working-directory: ./api
         run: yarn build
@@ -48,6 +56,14 @@ jobs:
       - name: Install dependencies (app - frontend)
         working-directory: ./app
         run: yarn
+
+      - name: Prettier (app - frontend)
+        working-directory: ./app
+        run: yarn format
+
+      - name: Lint (app - frontend)
+        working-directory: ./app
+        run: yarn lint
 
       - name: Build (app - frontend)
         working-directory: ./app
