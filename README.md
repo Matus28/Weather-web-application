@@ -33,7 +33,7 @@ Weather application adapts to the device's layout (responsive design), so it can
 <br/>
 
 <p align="center">
-<img src="/documents/preview/MOBILE.gif" alt="Gif of showing page with user's city list." width=20% height=20%>
+<img src="/documents/preview/MOBILE-preview.gif" alt="Gif of showing page with user's city list." width=20% height=20%>
 </p>
 
 ## Project structure
