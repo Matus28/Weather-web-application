@@ -8,11 +8,11 @@ const express_1 = __importDefault(require("express"));
 const userController_1 = require("../controllers/userController");
 exports.router = express_1.default.Router();
 // Login route
-exports.router.post("/login", userController_1.loginUser);
+exports.router.post('/login', userController_1.loginUser);
 // Signup route
-exports.router.post("/signup", userController_1.signupUser);
+exports.router.post('/signup', userController_1.signupUser);
 // Remove user route
-exports.router.delete("/", userController_1.removeUser);
+exports.router.delete('/', userController_1.removeUser);
 // Get user list (only avalible for admin)
-exports.router.get("/", userController_1.getUsers);
+exports.router.get('/', userController_1.getUsers);
 //# sourceMappingURL=user.js.map

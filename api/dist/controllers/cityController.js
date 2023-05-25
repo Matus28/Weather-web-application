@@ -67,7 +67,7 @@ const addCity = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const exist = yield cityModel_1.City.findOne({
             cityName: {
                 $regex: `^${cityName}`,
-                $options: "i",
+                $options: 'i',
             },
             userId,
         });
@@ -101,11 +101,11 @@ const deleteCity = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const { id } = req.params;
         if (!mongoose_1.default.Types.ObjectId.isValid(id)) {
-            return res.status(404).json({ error: "There is not such city." });
+            return res.status(404).json({ error: 'There is not such city.' });
         }
         const city = yield cityModel_1.City.findOneAndDelete({ _id: id });
         if (!city) {
-            return res.status(400).json({ error: "There is not such city." });
+            return res.status(400).json({ error: 'There is not such city.' });
         }
         res.status(200).json(city);
     }
