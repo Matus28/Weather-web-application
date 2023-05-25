@@ -22,17 +22,17 @@ const requireAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
     // Verify user is authenticated
     const { authorization } = req.headers;
     if (!authorization) {
-        return res.status(401).json({ error: "Authorization token required." });
+        return res.status(401).json({ error: 'Authorization token required.' });
     }
-    const token = authorization.split(" ")[1];
+    const token = authorization.split(' ')[1];
     try {
         const { _id } = jsonwebtoken_1.default.verify(token, process.env.SECRET);
         // attach user property to request (for another middleware)
-        req.user = (_a = (yield userModel_1.User.findOne({ _id }).select("_id"))) !== null && _a !== void 0 ? _a : "";
+        req.user = (_a = (yield userModel_1.User.findOne({ _id }).select('_id'))) !== null && _a !== void 0 ? _a : { _id: '' };
         next();
     }
     catch (error) {
-        res.status(401).json({ error: "Request is not authorized." });
+        res.status(401).json({ error: 'Request is not authorized.' });
     }
 });
 exports.requireAuth = requireAuth;

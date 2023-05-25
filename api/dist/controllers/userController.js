@@ -18,7 +18,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 dotenv_1.default.config();
 const createToken = (_id) => {
-    return jsonwebtoken_1.default.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
+    return jsonwebtoken_1.default.sign({ _id }, process.env.SECRET, { expiresIn: '3d' });
 };
 // Login user
 const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -46,7 +46,7 @@ const signupUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     catch (error) {
         if (error instanceof Error) {
             let statusCode = 400;
-            if (error.message === "Email already used.")
+            if (error.message === 'Email already used.')
                 statusCode = 409;
             res.status(statusCode).json({ error: error.message });
         }
@@ -57,15 +57,15 @@ exports.signupUser = signupUser;
 const removeUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.body;
     const { authorization } = req.headers;
-    const _idAdmin = "644ea44611143a03901f3e5f";
+    const _idAdmin = '644ea44611143a03901f3e5f';
     if (!authorization) {
-        res.status(401).json({ error: "Unauthorized." });
+        res.status(401).json({ error: 'Unauthorized.' });
         return;
     }
-    const token = authorization.replace("Bearer ", "");
+    const token = authorization.replace('Bearer ', '');
     const { _id } = jsonwebtoken_1.default.verify(token, process.env.SECRET);
     if (_id !== _idAdmin) {
-        res.status(401).json({ error: "User unauthorized for this action." });
+        res.status(401).json({ error: 'User unauthorized for this action.' });
         return;
     }
     try {
@@ -82,15 +82,15 @@ exports.removeUser = removeUser;
 // GET user list (for admin only)
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { authorization } = req.headers;
-    const _idAdmin = "644ea44611143a03901f3e5f";
+    const _idAdmin = '644ea44611143a03901f3e5f';
     if (!authorization) {
-        res.status(401).json({ error: "Unauthorized." });
+        res.status(401).json({ error: 'Unauthorized.' });
         return;
     }
-    const token = authorization.replace("Bearer ", "");
+    const token = authorization.replace('Bearer ', '');
     const { _id } = jsonwebtoken_1.default.verify(token, process.env.SECRET);
     if (_id !== _idAdmin) {
-        res.status(401).json({ error: "User unauthorized for this action." });
+        res.status(401).json({ error: 'User unauthorized for this action.' });
         return;
     }
     try {

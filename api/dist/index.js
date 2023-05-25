@@ -16,10 +16,7 @@ const app = (0, express_1.default)();
 // Middleware
 app.use((0, cors_1.default)({
     credentials: true,
-    origin: [
-        "https://weather-web-application-app.vercel.app",
-        "http://localhost:3000",
-    ],
+    origin: ['https://weather-web-application-app.vercel.app', 'http://localhost:3000'],
 }));
 app.use(express_1.default.json());
 app.use((req, res, next) => {
@@ -27,14 +24,14 @@ app.use((req, res, next) => {
     next();
 });
 // Routes
-app.use("/api/cities", cities_1.router);
-app.use("/api/weather", weather_1.router);
-app.use("/api/user", user_1.router);
+app.use('/api/cities', cities_1.router);
+app.use('/api/weather', weather_1.router);
+app.use('/api/user', user_1.router);
 // Connection to DB
 mongoose_1.default
-    .connect(process.env.MONGO_URI || "")
+    .connect(process.env.MONGO_URI || '')
     .then(() => {
-    if (process.env.NODE_ENV !== "test") {
+    if (process.env.NODE_ENV !== 'test') {
         app.listen(process.env.PORT, () => {
             console.log(`[api]: Connected to DB & Server is running at http://localhost:${process.env.PORT}`);
         });

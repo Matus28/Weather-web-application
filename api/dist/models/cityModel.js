@@ -31,15 +31,15 @@ exports.citySchema = new Schema({
     },
 });
 // Set Default city static method
-exports.citySchema.static("setDefaultCity", function (cityName, userId, isDefault) {
+exports.citySchema.static('setDefaultCity', function (cityName, userId, isDefault) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!cityName) {
-            throw Error("No city selected.");
+            throw Error('No city selected.');
         }
         const exists = yield this.findOne({
             cityName: {
                 $regex: `^${cityName}`,
-                $options: "i",
+                $options: 'i',
             },
             userId,
         });
@@ -52,7 +52,7 @@ exports.citySchema.static("setDefaultCity", function (cityName, userId, isDefaul
             yield this.updateOne({
                 cityName: {
                     $regex: `^${cityName}`,
-                    $options: "i",
+                    $options: 'i',
                 },
                 userId,
             }, { $set: { isDefault: true } });
@@ -61,5 +61,5 @@ exports.citySchema.static("setDefaultCity", function (cityName, userId, isDefaul
         return result;
     });
 });
-exports.City = mongoose_1.default.model("City", exports.citySchema);
+exports.City = mongoose_1.default.model('City', exports.citySchema);
 //# sourceMappingURL=cityModel.js.map

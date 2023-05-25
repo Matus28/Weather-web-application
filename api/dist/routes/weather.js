@@ -11,5 +11,5 @@ exports.router = express_1.default.Router();
 // Check for authentication (token) = require auth for all cities routes
 exports.router.use(requireAuth_1.requireAuth);
 // GET weather for specific city
-exports.router.get("/:location", weatherController_1.getWeatherData);
+exports.router.get('/:location', weatherController_1.getWeatherData);
 //# sourceMappingURL=weather.js.map

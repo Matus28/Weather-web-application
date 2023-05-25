@@ -52,20 +52,20 @@ exports.userSchema = new Schema({
     },
 });
 // Static SIGNUP method
-exports.userSchema.static("signup", function (email, password) {
+exports.userSchema.static('signup', function (email, password) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!email || !password) {
-            throw Error("All fields must be filled.");
+            throw Error('All fields must be filled.');
         }
         if (!validator.default.isEmail(email)) {
-            throw Error("Email is not valid.");
+            throw Error('Email is not valid.');
         }
         if (!validator.default.isStrongPassword(password)) {
-            throw Error("Password not strong enough.");
+            throw Error('Password not strong enough.');
         }
         const exists = yield this.findOne({ email });
         if (exists) {
-            throw Error("Email already used.");
+            throw Error('Email already used.');
         }
         const salt = yield bcrypt.genSalt(15);
         const hash = yield bcrypt.hash(password, salt);
@@ -74,21 +74,21 @@ exports.userSchema.static("signup", function (email, password) {
     });
 });
 // Static LOGIN method
-exports.userSchema.static("login", function (email, password) {
+exports.userSchema.static('login', function (email, password) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!email || !password) {
-            throw Error("All fields must be filled.");
+            throw Error('All fields must be filled.');
         }
         const user = yield this.findOne({ email });
         if (!user) {
-            throw Error("Email not found.");
+            throw Error('Email not found.');
         }
         const match = yield bcrypt.compare(password, user.password);
         if (!match) {
-            throw Error("Password incorrect.");
+            throw Error('Password incorrect.');
         }
         return user;
     });
 });
-exports.User = mongoose_1.default.model("User", exports.userSchema);
+exports.User = mongoose_1.default.model('User', exports.userSchema);
 //# sourceMappingURL=userModel.js.map
