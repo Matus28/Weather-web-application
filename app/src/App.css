@@ -35,7 +35,7 @@ body {
   min-height: 580px;
   height: calc(100vh - 80px);
   width: 100vw;
-  padding: 0 1.5rem;
+  padding: 0;
 }
 
 :root {
