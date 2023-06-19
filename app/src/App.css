@@ -32,9 +32,9 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
   min-height: 580px;
   height: calc(100vh - 80px);
-  width: 100vw;
   padding: 0;
 }
 

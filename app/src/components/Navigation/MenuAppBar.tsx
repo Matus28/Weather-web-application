@@ -36,7 +36,7 @@ export default function MenuAppBar() {
   }
 
   return (
-    <AppBar position='static' style={{ background: '#090b0c91', width: '100vw' }}>
+    <AppBar position='static' style={{ background: '#090b0c91', width: '100%' }}>
       <Toolbar>
         <DrawerMenu isAuthenticated={state.user !== null} />
         <Typography className='page-title' variant='h6' component='div' sx={{ flexGrow: 1 }}>
