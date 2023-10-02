@@ -37,41 +37,41 @@ jobs:
         working-directory: ./api
         run: yarn
 
-      # - name: Prettier (api - backend)
-      #   working-directory: ./api
-      #   run: yarn format
+      - name: Prettier (api - backend)
+        working-directory: ./api
+        run: yarn format
 
-      # - name: Lint (api - backend)
-      #   working-directory: ./api
-      #   run: yarn lint
+      - name: Lint (api - backend)
+        working-directory: ./api
+        run: yarn lint
 
       - name: Build (api - backend)
         working-directory: ./api
         run: yarn build
 
-      # - name: Test (api - backend)
-      #   working-directory: ./api
-      #   run: yarn test
+      - name: Test (api - backend)
+        working-directory: ./api
+        run: yarn test
 
       - name: Install dependencies (app - frontend)
         working-directory: ./app
         run: yarn
 
-      # - name: Prettier (app - frontend)
-      #   working-directory: ./app
-      #   run: yarn format
+      - name: Prettier (app - frontend)
+        working-directory: ./app
+        run: yarn format
 
-      # - name: Lint (app - frontend)
-      #   working-directory: ./app
-      #   run: yarn lint
+      - name: Lint (app - frontend)
+        working-directory: ./app
+        run: yarn lint
 
       - name: Build (app - frontend)
         working-directory: ./app
         run: yarn build
 
-      # - name: Test (app - frontend)
-      #   working-directory: ./app
-      #   run: yarn test
+      - name: Test (app - frontend)
+        working-directory: ./app
+        run: yarn test
 
       - name: Start backend (e2e testing)
         working-directory: ./api
