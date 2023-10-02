@@ -42,7 +42,8 @@ header a {
   text-align: center;
 }
 
-header a:hover {
+header a:hover,
+header a.active {
   background-color: #045db66b;
 }
 
