@@ -3,10 +3,13 @@ import { useAuthContext } from '../../hooks/useAuthContext'
 import { useLogout } from '../../hooks/useLogout'
 
 import './Navbar.css'
+import { useTitleContext } from '../../context/TitleContext'
 
 const Navbar = (): JSX.Element => {
   const { logout } = useLogout()
   const { state } = useAuthContext()
+
+  const contextTitle = useTitleContext()
 
   const handleClick = (): void => {
     logout()
@@ -17,11 +20,11 @@ const Navbar = (): JSX.Element => {
       <div className='container'>
         <div className='controls'>
           <div className='tabs'>
-            <Link to='/'>
+            <Link className={contextTitle?.title === 'Home' ? 'active' : ''} to='/'>
               <h2>Home</h2>
             </Link>
             {state.user && (
-              <Link to='/cities'>
+              <Link className={contextTitle?.title === 'Cities' ? 'active' : ''} to='/cities'>
                 <h2>Cities</h2>
               </Link>
             )}
