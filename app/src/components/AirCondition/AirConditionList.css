@@ -6,3 +6,10 @@
   gap: 60px;
   max-width: 720px;
 }
+
+@media (max-width: 400px) {
+  .air-condition-list {
+    flex-flow: column nowrap;
+    align-items: center;
+  }
+}

@@ -11,7 +11,7 @@ const user_1 = require("./routes/user");
 const mongoose_1 = __importDefault(require("mongoose"));
 const cors_1 = __importDefault(require("cors"));
 dotenv_1.default.config();
-// APP creating
+// APP creating here
 const app = (0, express_1.default)();
 // Middleware
 app.use((0, cors_1.default)({
