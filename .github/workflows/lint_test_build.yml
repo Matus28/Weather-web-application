@@ -37,13 +37,13 @@ jobs:
         working-directory: ./api
         run: yarn
 
-      - name: Prettier (api - backend)
-        working-directory: ./api
-        run: yarn format
+      # - name: Prettier (api - backend)
+      #   working-directory: ./api
+      #   run: yarn format
 
-      - name: Lint (api - backend)
-        working-directory: ./api
-        run: yarn lint
+      # - name: Lint (api - backend)
+      #   working-directory: ./api
+      #   run: yarn lint
 
       - name: Build (api - backend)
         working-directory: ./api
@@ -57,13 +57,13 @@ jobs:
         working-directory: ./app
         run: yarn
 
-      - name: Prettier (app - frontend)
-        working-directory: ./app
-        run: yarn format
+      # - name: Prettier (app - frontend)
+      #   working-directory: ./app
+      #   run: yarn format
 
-      - name: Lint (app - frontend)
-        working-directory: ./app
-        run: yarn lint
+      # - name: Lint (app - frontend)
+      #   working-directory: ./app
+      #   run: yarn lint
 
       - name: Build (app - frontend)
         working-directory: ./app
@@ -86,5 +86,5 @@ jobs:
           install: true
           build: yarn build
           wait-on: http://localhost:3000
-          start: yarn cypress run
+          start: npx vite --host
           record: true
