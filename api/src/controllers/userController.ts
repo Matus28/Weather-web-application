@@ -49,7 +49,7 @@ export const signupUser = async (req: Request, res: Response): Promise<void> => 
 export const removeUser = async (req: Request, res: Response): Promise<void> => {
   const { email } = req.body
   const { authorization } = req.headers
-  const _idAdmin = '644ea44611143a03901f3e5f'
+  const _idAdmin = '651a9e37a54ac7c775f8f494'
 
   if (!authorization) {
     res.status(401).json({ error: 'Unauthorized.' })
@@ -77,7 +77,7 @@ export const removeUser = async (req: Request, res: Response): Promise<void> => 
 // GET user list (for admin only)
 export const getUsers = async (req: Request, res: Response): Promise<void> => {
   const { authorization } = req.headers
-  const _idAdmin = '644ea44611143a03901f3e5f'
+  const _idAdmin = '651a9e37a54ac7c775f8f494'
   if (!authorization) {
     res.status(401).json({ error: 'Unauthorized.' })
     return

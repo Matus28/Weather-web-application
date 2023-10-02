@@ -57,7 +57,7 @@ exports.signupUser = signupUser;
 const removeUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email } = req.body;
     const { authorization } = req.headers;
-    const _idAdmin = '644ea44611143a03901f3e5f';
+    const _idAdmin = '651a9e37a54ac7c775f8f494';
     if (!authorization) {
         res.status(401).json({ error: 'Unauthorized.' });
         return;
@@ -82,7 +82,7 @@ exports.removeUser = removeUser;
 // GET user list (for admin only)
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { authorization } = req.headers;
-    const _idAdmin = '644ea44611143a03901f3e5f';
+    const _idAdmin = '651a9e37a54ac7c775f8f494';
     if (!authorization) {
         res.status(401).json({ error: 'Unauthorized.' });
         return;
