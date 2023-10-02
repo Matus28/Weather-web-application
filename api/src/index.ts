@@ -8,7 +8,7 @@ import cors from 'cors'
 
 dotenv.config()
 
-// APP creating
+// APP creating here
 const app = express()
 
 // Middleware
